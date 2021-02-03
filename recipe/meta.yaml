@@ -13,7 +13,7 @@ source:
       - out-of-tree.diff
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -47,6 +47,9 @@ outputs:
         - test -f "$PREFIX/lib/libMLIRIR.a"                        # [unix]
         - if not exist %LIBRARY_INC%\\mlir-c\\Core.h exit 1        # [win]
         - if not exist %LIBRARY_LIB%\\MLIRIR.lib exit 1            # [win]
+        - $PREFIX/bin/mlir-opt -version                            # [not win]
+        - if not exist "%LIBRARY_BIN%"\\mlir-opt.exe exit 1        # [win]
+        - mlir-opt -version                                        # [win]
 
   - name: libmlir{{ major_version }}
     script: install_libmlir.sh  # [unix]

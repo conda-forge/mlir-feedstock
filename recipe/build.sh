@@ -1,3 +1,6 @@
+# Get an updated config.sub and config.guess
+cp $BUILD_PREFIX/share/gnuconfig/config.* ./polly/lib/External/ppcg
+cp $BUILD_PREFIX/share/gnuconfig/config.* ./polly/lib/External/isl
 mkdir build
 cd build
 

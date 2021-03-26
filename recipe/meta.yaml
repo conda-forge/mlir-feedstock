@@ -19,6 +19,7 @@ requirements:
   build:
     - cmake
     - make                    # [unix]
+    - gnuconfig  # [unix]
     - {{ compiler('cxx') }}
   host:
     - llvmdev {{ version }}

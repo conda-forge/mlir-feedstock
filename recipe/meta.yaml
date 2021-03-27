@@ -117,4 +117,5 @@ extra:
   recipe-maintainers:
     - isuruf
     - kaushikcfd
+    - xhochy
   feedstock-name: mlir

@@ -158,4 +158,5 @@ Feedstock Maintainers
 
 * [@isuruf](https://github.com/isuruf/)
 * [@kaushikcfd](https://github.com/kaushikcfd/)
+* [@xhochy](https://github.com/xhochy/)
 

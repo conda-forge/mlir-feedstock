@@ -1,5 +1,12 @@
 #!/bin/bash
 set -x -e
+
+if [[ "$CONDA_BUILD_CROSS_COMPILATION" == 1 ]]; then
+  pushd build-host
+    cp bin/mlir-linalg-ods-gen bin/mlir-tblgen ${BUILD_PREFIX}/bin
+  popd
+fi
+
 cd ${SRC_DIR}/build
 make install
 

@@ -2,7 +2,7 @@
 
 set -euxo pipefail
 
-if [[ "$CONDA_BUILD_CROSS_COMPILATION" == 1 ]]; then
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-0}" == 1 ]]; then
   (
     mkdir -p build-host
     pushd build-host

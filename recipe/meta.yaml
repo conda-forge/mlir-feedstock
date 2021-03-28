@@ -11,6 +11,7 @@ source:
     patches:
       # https://reviews.llvm.org/D85464
       - out-of-tree.diff
+      - mlir-cross.patch
 
 build:
   number: 0

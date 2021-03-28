@@ -13,7 +13,6 @@ mkdir -p build
 cd build
 
 cmake ${CMAKE_ARGS} \
-  -DLLVM_USE_HOST_TOOLS=1 \
   -DCMAKE_INSTALL_PREFIX="${PREFIX}" \
   -DCMAKE_BUILD_TYPE=Release \
   -DLLVM_BUILD_LLVM_DYLIB=ON \

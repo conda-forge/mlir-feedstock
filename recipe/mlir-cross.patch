@@ -60,7 +60,7 @@ diff --git a/mlir/tools/CMakeLists.txt b/mlir/tools/CMakeLists.txt
 index ab59514ef6a7d..3a60ae25548ec 100644
 --- a/mlir/tools/CMakeLists.txt
 +++ b/mlir/tools/CMakeLists.txt
-@@ -1,10 +1,9 @@
+@@ -1,9 +1,8 @@
  add_subdirectory(mlir-cuda-runner)
  add_subdirectory(mlir-cpu-runner)
 -add_subdirectory(mlir-linalg-ods-gen)
@@ -70,9 +70,6 @@ index ab59514ef6a7d..3a60ae25548ec 100644
  add_subdirectory(mlir-shlib)
  add_subdirectory(mlir-spirv-cpu-runner)
  add_subdirectory(mlir-translate)
--add_subdirectory(mlir-vulkan-runner)
-\ No newline at end of file
-+add_subdirectory(mlir-vulkan-runner)
 diff --git a/mlir/tools/mlir-linalg-ods-gen/CMakeLists.txt b/mlir/tools/mlir-linalg-ods-gen/CMakeLists.txt
 index bc9a0c1f310a1..7a0f79798268e 100644
 --- a/mlir/tools/mlir-linalg-ods-gen/CMakeLists.txt

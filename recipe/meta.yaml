@@ -17,7 +17,7 @@ source:
       - mlir-cross-standalone.patch
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -55,6 +55,7 @@ outputs:
         - $PREFIX/bin/mlir-opt -version                            # [not win]
         - if not exist "%LIBRARY_BIN%"\\mlir-opt.exe exit 1        # [win]
         - mlir-opt -version                                        # [win]
+        - mlir-tblgen -version
 
   - name: libmlir{{ major_version }}
     script: install_libmlir.sh  # [unix]

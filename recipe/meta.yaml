@@ -1,4 +1,4 @@
-{% set version = "11.1.0" %}
+{% set version = "12.0.0" %}
 {% set major_version = version.split(".")[0] %}
 
 package:
@@ -7,17 +7,15 @@ package:
 
 source:
   - url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(".rc", "-rc") }}/llvm-project-{{ version.replace(".rc", "rc") }}.src.tar.xz
-    sha256: 74d2529159fd118c3eac6f90107b5611bccc6f647fdea104024183e8d5e25831
+    sha256: 9ed1688943a4402d7c904cc4515798cdb20080066efa010fe7e1f2551b423628
     patches:
       # https://reviews.llvm.org/D85464
-      - out-of-tree.diff
-      # https://reviews.llvm.org/D94598
-      - mlir-cross.patch
+      - 0001-MLIR-CMake-Support-building-MLIR-standalone.patch
       # https://reviews.llvm.org/D99470
-      - mlir-cross-standalone.patch
+      - 0002-Support-cross-compiling-standalone-MLIR.patch
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
@@ -48,9 +46,9 @@ outputs:
         - llvmdev {{ version }}
     test:
       commands:
-        - test -f "$PREFIX/include/mlir-c/Core.h"                  # [unix]
+        - test -f "$PREFIX/include/mlir-c/Support.h"               # [unix]
         - test -f "$PREFIX/lib/libMLIRIR.a"                        # [unix]
-        - if not exist %LIBRARY_INC%\\mlir-c\\Core.h exit 1        # [win]
+        - if not exist %LIBRARY_INC%\\mlir-c\\Support.h exit 1     # [win]
         - if not exist %LIBRARY_LIB%\\MLIRIR.lib exit 1            # [win]
         - $PREFIX/bin/mlir-opt -version                            # [not win]
         - if not exist "%LIBRARY_BIN%"\\mlir-opt.exe exit 1        # [win]

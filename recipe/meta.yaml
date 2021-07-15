@@ -1,4 +1,4 @@
-{% set version = "12.0.0" %}
+{% set version = "12.0.1" %}
 {% set major_version = version.split(".")[0] %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   - url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(".rc", "-rc") }}/llvm-project-{{ version.replace(".rc", "rc") }}.src.tar.xz
-    sha256: 9ed1688943a4402d7c904cc4515798cdb20080066efa010fe7e1f2551b423628
+    sha256: 129cb25cd13677aad951ce5c2deb0fe4afc1e9d98950f53b51bdcfb5a73afa0e
     patches:
       # https://reviews.llvm.org/D85464
       - 0001-MLIR-CMake-Support-building-MLIR-standalone.patch

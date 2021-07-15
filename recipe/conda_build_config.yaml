@@ -1,0 +1,2 @@
+cxx_compiler_version:  # [osx and arm64]
+- '12'                 # [osx and arm64]

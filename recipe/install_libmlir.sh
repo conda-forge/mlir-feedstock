@@ -2,7 +2,7 @@
 set -x -e
 
 cd ${SRC_DIR}/build
-make install
+ninja install
 
 cd $PREFIX
 rm -rf libexec share bin include
@@ -13,10 +13,12 @@ if [[ "$PKG_NAME" == "libmlir" ]]; then
     cp lib2/libMLIR${SHLIB_EXT} lib/
     cp lib2/libmlir_runner_utils${SHLIB_EXT} lib/
     cp lib2/libmlir_c_runner_utils${SHLIB_EXT} lib/
+    cp lib2/libmlir_async_runtime${SHLIB_EXT} lib/
 else
     cp lib2/libMLIR.*.* lib/
     cp lib2/libmlir_runner_utils.*.* lib/
     cp lib2/libmlir_c_runner_utils.*.* lib/
+    cp lib2/libmlir_async_runtime.*.* lib/
 fi
 rm -rf lib2
 

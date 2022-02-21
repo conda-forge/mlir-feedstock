@@ -10,9 +10,9 @@ source:
     sha256: 326335a830f2e32d06d0a36393b5455d17dc73e0bd1211065227ee014f92cbf8
     patches:
       # https://reviews.llvm.org/D85464
-      - 0001-MLIR-CMake-Support-building-MLIR-standalone.patch
+      #- 0001-MLIR-CMake-Support-building-MLIR-standalone.patch
       # https://reviews.llvm.org/D99470
-      - 0002-Support-cross-compiling-standalone-MLIR.patch
+      # - 0002-Support-cross-compiling-standalone-MLIR.patch
 
 build:
   number: 0
@@ -20,12 +20,15 @@ build:
 requirements:
   build:
     - cmake
-    - make                    # [unix]
+    - ninja
     - {{ compiler('cxx') }}
-    - llvmdev {{ version }}  # [build_platform != target_platform]
+    - mlir-tblgen {{ version }}  # [build_platform != target_platform]
+    - mlir-linalg-ods-gen {{ version }}  # [build_platform != target_platform]
   host:
     - llvmdev {{ version }}
     - llvm {{ version }}
+    - mlir-tblgen {{ version }}
+    - mlir-linalg-ods-gen {{ version }}
 
 outputs:
   - name: mlir
@@ -35,15 +38,20 @@ outputs:
       build:
         - {{ compiler('cxx') }}
         - cmake
-        - ninja  # [win]
-        - make   # [unix]
-        - llvmdev {{ version }}    # [build_platform != target_platform]
+        - ninja
+        - mlir-tblgen {{ version }}    # [build_platform != target_platform]
+        - mlir-linalg-ods-gen {{ version }}    # [build_platform != target_platform]
       host:
         - {{ pin_subpackage("libmlir", exact=True) }}
         - llvmdev {{ version }}
+        - llvm {{ version }}
+        - mlir-tblgen {{ version }}
+        - mlir-linalg-ods-gen {{ version }}
       run:
         - {{ pin_subpackage("libmlir", exact=True) }}
         - llvmdev {{ version }}
+        - mlir-tblgen {{ version }}
+        - mlir-linalg-ods-gen {{ version }}
     test:
       commands:
         - test -f "$PREFIX/include/mlir-c/Support.h"               # [unix]
@@ -53,7 +61,6 @@ outputs:
         - $PREFIX/bin/mlir-opt -version                            # [not win]
         - if not exist "%LIBRARY_BIN%"\\mlir-opt.exe exit 1        # [win]
         - mlir-opt -version                                        # [win]
-        - mlir-tblgen -version
 
   - name: libmlir{{ major_version }}
     script: install_libmlir.sh  # [unix]
@@ -65,12 +72,14 @@ outputs:
       build:
         - {{ compiler('cxx') }}
         - cmake
-        - ninja  # [win]
-        - make   # [unix]
-        - llvmdev {{ version }}    # [build_platform != target_platform]
+        - ninja
+        - mlir-tblgen {{ version }}    # [build_platform != target_platform]
+        - mlir-linalg-ods-gen {{ version }}    # [build_platform != target_platform]
       host:
         - llvmdev {{ version }}
         - llvm {{ version }}
+        - mlir-tblgen {{ version }}
+        - mlir-linalg-ods-gen {{ version }}
     test:
       commands:
         - test ! -f "$PREFIX/lib/libMLIR$SHLIB_EXT"                                # [unix]
@@ -95,12 +104,14 @@ outputs:
       build:
         - {{ compiler('cxx') }}
         - cmake
-        - ninja  # [win]
-        - make   # [unix]
-        - llvmdev {{ version }}    # [build_platform != target_platform]
+        - ninja
+        - mlir-tblgen {{ version }}    # [build_platform != target_platform]
+        - mlir-linalg-ods-gen {{ version }}    # [build_platform != target_platform]
       host:
         - llvmdev {{ version }}
         - llvm {{ version }}
+        - mlir-tblgen {{ version }}
+        - mlir-linalg-ods-gen {{ version }}
         - {{ pin_subpackage("libmlir" + major_version, exact=True) }}  # [unix]
       run:
         - {{ pin_subpackage("libmlir" + major_version, exact=True) }}  # [unix]

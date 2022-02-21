@@ -14,9 +14,6 @@ source:
 
 build:
   number: 0
-  ignore_run_exports_from:
-    # CMake looks for zlib but mlir doesn't link against it
-    - zlib
 
 requirements:
   build:
@@ -27,7 +24,7 @@ requirements:
   host:
     - llvmdev {{ version }}
     - llvm {{ version }}
-    - zlib  # linux
+    - zlib
 
 outputs:
   - name: mlir
@@ -43,6 +40,8 @@ outputs:
       host:
         - {{ pin_subpackage("libmlir", exact=True) }}
         - llvmdev {{ version }}
+        - llvm {{ version }}
+        - zlib
       run:
         - {{ pin_subpackage("libmlir", exact=True) }}
         - llvmdev {{ version }}
@@ -73,6 +72,7 @@ outputs:
       host:
         - llvmdev {{ version }}
         - llvm {{ version }}
+        - zlib
     test:
       commands:
         - test ! -f "$PREFIX/lib/libMLIR$SHLIB_EXT"                                # [unix]
@@ -103,6 +103,7 @@ outputs:
       host:
         - llvmdev {{ version }}
         - llvm {{ version }}
+        - zlib
         - {{ pin_subpackage("libmlir" + major_version, exact=True) }}  # [unix]
       run:
         - {{ pin_subpackage("libmlir" + major_version, exact=True) }}  # [unix]

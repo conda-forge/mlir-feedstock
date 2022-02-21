@@ -5,9 +5,9 @@ channel_sources:
 channel_targets:
 - conda-forge main
 cxx_compiler:
-- clangxx
+- clang_bootstrap
 cxx_compiler_version:
-- '13'
+- '12'
 macos_machine:
 - arm64-apple-darwin20.0.0
 target_platform:

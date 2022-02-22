@@ -82,7 +82,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libmlir-green.svg)](https://anaconda.org/conda-forge/libmlir) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libmlir.svg)](https://anaconda.org/conda-forge/libmlir) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libmlir.svg)](https://anaconda.org/conda-forge/libmlir) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libmlir.svg)](https://anaconda.org/conda-forge/libmlir) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-libmlir13-green.svg)](https://anaconda.org/conda-forge/libmlir13) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libmlir13.svg)](https://anaconda.org/conda-forge/libmlir13) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libmlir13.svg)](https://anaconda.org/conda-forge/libmlir13) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libmlir13.svg)](https://anaconda.org/conda-forge/libmlir13) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libmlir14-green.svg)](https://anaconda.org/conda-forge/libmlir14) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libmlir14.svg)](https://anaconda.org/conda-forge/libmlir14) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libmlir14.svg)](https://anaconda.org/conda-forge/libmlir14) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libmlir14.svg)](https://anaconda.org/conda-forge/libmlir14) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-mlir-green.svg)](https://anaconda.org/conda-forge/mlir) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mlir.svg)](https://anaconda.org/conda-forge/mlir) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mlir.svg)](https://anaconda.org/conda-forge/mlir) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mlir.svg)](https://anaconda.org/conda-forge/mlir) |
 
 Installing mlir
@@ -95,10 +95,10 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `libmlir, libmlir13, mlir` can be installed with:
+Once the `conda-forge` channel has been enabled, `libmlir, libmlir14, mlir` can be installed with:
 
 ```
-conda install libmlir libmlir13 mlir
+conda install libmlir libmlir14 mlir
 ```
 
 It is possible to list all of the versions of `libmlir` available on your platform with:

@@ -1,2 +1,4 @@
-cxx_compiler_version:  # [osx and arm64]
-- '12'                 # [osx and arm64]
+c_compiler:         # [osx and arm64]
+  - clang_bootstrap # [osx and arm64]
+cxx_compiler:       # [osx and arm64]
+  - clang_bootstrap # [osx and arm64]

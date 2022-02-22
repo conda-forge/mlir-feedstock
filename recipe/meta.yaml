@@ -1,4 +1,4 @@
-{% set version = "12.0.1" %}
+{% set version = "13.0.1" %}
 {% set major_version = version.split(".")[0] %}
 
 package:
@@ -7,12 +7,10 @@ package:
 
 source:
   - url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(".rc", "-rc") }}/llvm-project-{{ version.replace(".rc", "rc") }}.src.tar.xz
-    sha256: 129cb25cd13677aad951ce5c2deb0fe4afc1e9d98950f53b51bdcfb5a73afa0e
+    sha256: 326335a830f2e32d06d0a36393b5455d17dc73e0bd1211065227ee014f92cbf8
     patches:
-      # https://reviews.llvm.org/D85464
-      - 0001-MLIR-CMake-Support-building-MLIR-standalone.patch
       # https://reviews.llvm.org/D99470
-      - 0002-Support-cross-compiling-standalone-MLIR.patch
+      - 0001-Support-cross-compiling-standalone-MLIR.patch
 
 build:
   number: 0
@@ -26,6 +24,7 @@ requirements:
   host:
     - llvmdev {{ version }}
     - llvm {{ version }}
+    - zlib
 
 outputs:
   - name: mlir
@@ -41,6 +40,8 @@ outputs:
       host:
         - {{ pin_subpackage("libmlir", exact=True) }}
         - llvmdev {{ version }}
+        - llvm {{ version }}
+        - zlib
       run:
         - {{ pin_subpackage("libmlir", exact=True) }}
         - llvmdev {{ version }}
@@ -71,6 +72,7 @@ outputs:
       host:
         - llvmdev {{ version }}
         - llvm {{ version }}
+        - zlib
     test:
       commands:
         - test ! -f "$PREFIX/lib/libMLIR$SHLIB_EXT"                                # [unix]
@@ -101,6 +103,7 @@ outputs:
       host:
         - llvmdev {{ version }}
         - llvm {{ version }}
+        - zlib
         - {{ pin_subpackage("libmlir" + major_version, exact=True) }}  # [unix]
       run:
         - {{ pin_subpackage("libmlir" + major_version, exact=True) }}  # [unix]

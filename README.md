@@ -13,21 +13,7 @@ Current build status
 ====================
 
 
-<table><tr>
-    <td>Travis</td>
-    <td>
-      <a href="https://travis-ci.com/conda-forge/mlir-feedstock">
-        <img alt="macOS" src="https://img.shields.io/travis/com/conda-forge/mlir-feedstock/master.svg?label=macOS">
-      </a>
-    </td>
-  </tr><tr>
-    <td>Drone</td>
-    <td>
-      <a href="https://cloud.drone.io/conda-forge/mlir-feedstock">
-        <img alt="linux" src="https://img.shields.io/drone/build/conda-forge/mlir-feedstock/master.svg?label=Linux">
-      </a>
-    </td>
-  </tr>
+<table>
     
   <tr>
     <td>Azure</td>
@@ -96,7 +82,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libmlir-green.svg)](https://anaconda.org/conda-forge/libmlir) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libmlir.svg)](https://anaconda.org/conda-forge/libmlir) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libmlir.svg)](https://anaconda.org/conda-forge/libmlir) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libmlir.svg)](https://anaconda.org/conda-forge/libmlir) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-libmlir11-green.svg)](https://anaconda.org/conda-forge/libmlir11) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libmlir11.svg)](https://anaconda.org/conda-forge/libmlir11) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libmlir11.svg)](https://anaconda.org/conda-forge/libmlir11) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libmlir11.svg)](https://anaconda.org/conda-forge/libmlir11) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libmlir13-green.svg)](https://anaconda.org/conda-forge/libmlir13) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libmlir13.svg)](https://anaconda.org/conda-forge/libmlir13) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libmlir13.svg)](https://anaconda.org/conda-forge/libmlir13) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libmlir13.svg)](https://anaconda.org/conda-forge/libmlir13) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-mlir-green.svg)](https://anaconda.org/conda-forge/mlir) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mlir.svg)](https://anaconda.org/conda-forge/mlir) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mlir.svg)](https://anaconda.org/conda-forge/mlir) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mlir.svg)](https://anaconda.org/conda-forge/mlir) |
 
 Installing mlir
@@ -106,12 +92,13 @@ Installing `mlir` from the `conda-forge` channel can be achieved by adding `cond
 
 ```
 conda config --add channels conda-forge
+conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `libmlir, libmlir11, mlir` can be installed with:
+Once the `conda-forge` channel has been enabled, `libmlir, libmlir13, mlir` can be installed with:
 
 ```
-conda install libmlir libmlir11 mlir
+conda install libmlir libmlir13 mlir
 ```
 
 It is possible to list all of the versions of `libmlir` available on your platform with:
@@ -124,7 +111,8 @@ conda search libmlir --channel conda-forge
 About conda-forge
 =================
 
-[![Powered by NumFOCUS](https://img.shields.io/badge/powered%20by-NumFOCUS-orange.svg?style=flat&colorA=E1523D&colorB=007D8A)](http://numfocus.org)
+[![Powered by
+NumFOCUS](https://img.shields.io/badge/powered%20by-NumFOCUS-orange.svg?style=flat&colorA=E1523D&colorB=007D8A)](https://numfocus.org)
 
 conda-forge is a community-led conda channel of installable packages.
 In order to provide high-quality builds, the process has been automated into the

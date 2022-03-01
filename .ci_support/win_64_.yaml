@@ -1,7 +1,7 @@
 channel_sources:
-- conda-forge/label/llvm_rc,conda-forge
+- conda-forge/label/llvm_dev,conda-forge
 channel_targets:
-- conda-forge mlir_rc
+- conda-forge mlir_dev
 cxx_compiler:
 - vs2019
 pin_run_as_build:

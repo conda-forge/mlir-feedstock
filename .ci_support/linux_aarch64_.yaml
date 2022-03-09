@@ -5,9 +5,9 @@ cdt_arch:
 cdt_name:
 - cos7
 channel_sources:
-- conda-forge/label/llvm_dev,conda-forge
+- conda-forge/label/llvm_tf,conda-forge
 channel_targets:
-- conda-forge mlir_dev
+- conda-forge mlir_tf
 cxx_compiler:
 - gxx
 cxx_compiler_version:

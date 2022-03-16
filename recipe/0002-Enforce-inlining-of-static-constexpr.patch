@@ -1,0 +1,27 @@
+From 64ccbcc26a2e906f25778ef88c6a35dbd3720558 Mon Sep 17 00:00:00 2001
+From: Uwe Korn <uwelk@xhochy.com>
+Date: Wed, 16 Mar 2022 07:07:35 +0000
+Subject: [PATCH] Enforce inlining of static constexpr
+
+---
+ mlir/include/mlir/IR/BuiltinTypes.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/mlir/include/mlir/IR/BuiltinTypes.h b/mlir/include/mlir/IR/BuiltinTypes.h
+index 6f25f81e9..0494501d4 100644
+--- a/mlir/include/mlir/IR/BuiltinTypes.h
++++ b/mlir/include/mlir/IR/BuiltinTypes.h
+@@ -70,8 +70,8 @@ public:
+   // TODO: merge these two special values in a single one used everywhere.
+   // Unfortunately, uses of `-1` have crept deep into the codebase now and are
+   // hard to track.
+-  static constexpr int64_t kDynamicSize = -1;
+-  static constexpr int64_t kDynamicStrideOrOffset =
++  static constexpr inline int64_t kDynamicSize = -1;
++  static constexpr inline int64_t kDynamicStrideOrOffset =
+       std::numeric_limits<int64_t>::min();
+ 
+   /// Return clone of this type with new shape and element type.
+-- 
+2.35.1
+

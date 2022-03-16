@@ -17,9 +17,12 @@ source:
     patches:
       # https://reviews.llvm.org/D99470
       - 0001-Support-cross-compiling-standalone-MLIR.patch
+      # Enable C++14 compilations to link against a C++17 compiled MLIR
+      # This patch should only be applied if MLIR is built with std=c++17
+      - 0002-Enforce-inlining-of-static-constexpr.patch  # [linux]
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:

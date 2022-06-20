@@ -19,6 +19,7 @@ cmake ${CMAKE_ARGS} \
   -DLLVM_LINK_LLVM_DYLIB=ON \
   -DLLVM_BUILD_TOOLS=ON \
   -DLLVM_BUILD_UTILS=ON \
+  -GNinja \
   ../mlir
 
-make -j${CPU_COUNT}
+ninja

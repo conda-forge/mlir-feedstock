@@ -11,6 +11,8 @@ source:
     patches:
       # https://reviews.llvm.org/D99470
       - 0001-Support-cross-compiling-standalone-MLIR.patch
+      # https://github.com/llvm/llvm-project/issues/53989
+      - 0002-Revert-Disable-the-MLIR-ExecutionEngine-library-when.patch
 
 build:
   number: 0
@@ -18,7 +20,7 @@ build:
 requirements:
   build:
     - cmake
-    - make                    # [unix]
+    - ninja
     - {{ compiler('cxx') }}
     - llvmdev {{ version }}  # [build_platform != target_platform]
   host:
@@ -34,8 +36,7 @@ outputs:
       build:
         - {{ compiler('cxx') }}
         - cmake
-        - ninja  # [win]
-        - make   # [unix]
+        - ninja
         - llvmdev {{ version }}    # [build_platform != target_platform]
       host:
         - {{ pin_subpackage("libmlir", exact=True) }}
@@ -66,8 +67,7 @@ outputs:
       build:
         - {{ compiler('cxx') }}
         - cmake
-        - ninja  # [win]
-        - make   # [unix]
+        - ninja
         - llvmdev {{ version }}    # [build_platform != target_platform]
       host:
         - llvmdev {{ version }}
@@ -97,8 +97,7 @@ outputs:
       build:
         - {{ compiler('cxx') }}
         - cmake
-        - ninja  # [win]
-        - make   # [unix]
+        - ninja
         - llvmdev {{ version }}    # [build_platform != target_platform]
       host:
         - llvmdev {{ version }}

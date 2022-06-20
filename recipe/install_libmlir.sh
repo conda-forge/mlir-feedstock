@@ -2,7 +2,7 @@
 set -x -e
 
 cd ${SRC_DIR}/build
-make install
+ninja install
 
 cd $PREFIX
 rm -rf libexec share bin include

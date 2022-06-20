@@ -1,4 +1,4 @@
-{% set version = "13.0.1" %}
+{% set version = "14.0.3" %}
 {% set major_version = version.split(".")[0] %}
 
 package:
@@ -7,10 +7,12 @@ package:
 
 source:
   - url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(".rc", "-rc") }}/llvm-project-{{ version.replace(".rc", "rc") }}.src.tar.xz
-    sha256: 326335a830f2e32d06d0a36393b5455d17dc73e0bd1211065227ee014f92cbf8
+    sha256: 44d3e7a784d5cf805e72853bb03f218bd1058d448c03ca883dabbebc99204e0c
     patches:
       # https://reviews.llvm.org/D99470
       - 0001-Support-cross-compiling-standalone-MLIR.patch
+      # https://github.com/llvm/llvm-project/issues/53989
+      - 0002-Revert-Disable-the-MLIR-ExecutionEngine-library-when.patch
 
 build:
   number: 0
@@ -18,7 +20,7 @@ build:
 requirements:
   build:
     - cmake
-    - make                    # [unix]
+    - ninja
     - {{ compiler('cxx') }}
     - llvmdev {{ version }}  # [build_platform != target_platform]
   host:
@@ -34,8 +36,7 @@ outputs:
       build:
         - {{ compiler('cxx') }}
         - cmake
-        - ninja  # [win]
-        - make   # [unix]
+        - ninja
         - llvmdev {{ version }}    # [build_platform != target_platform]
       host:
         - {{ pin_subpackage("libmlir", exact=True) }}
@@ -66,8 +67,7 @@ outputs:
       build:
         - {{ compiler('cxx') }}
         - cmake
-        - ninja  # [win]
-        - make   # [unix]
+        - ninja
         - llvmdev {{ version }}    # [build_platform != target_platform]
       host:
         - llvmdev {{ version }}
@@ -97,8 +97,7 @@ outputs:
       build:
         - {{ compiler('cxx') }}
         - cmake
-        - ninja  # [win]
-        - make   # [unix]
+        - ninja
         - llvmdev {{ version }}    # [build_platform != target_platform]
       host:
         - llvmdev {{ version }}

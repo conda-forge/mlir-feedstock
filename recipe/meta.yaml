@@ -11,8 +11,6 @@ source:
     patches:
       # https://reviews.llvm.org/D99470
       - 0001-Support-cross-compiling-standalone-MLIR.patch
-      # https://github.com/llvm/llvm-project/issues/53989
-      - 0002-Revert-Disable-the-MLIR-ExecutionEngine-library-when.patch
 
 build:
   number: 0

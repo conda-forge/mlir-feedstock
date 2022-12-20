@@ -22,6 +22,9 @@ requirements:
     - {{ compiler('cxx') }}
     - llvmdev {{ version }}  # [build_platform != target_platform]
   host:
+    - python
+    - numpy>=1.23
+    - pybind11>=2.8.0
     - llvmdev {{ version }}
     - llvm {{ version }}
     - zlib
@@ -37,6 +40,9 @@ outputs:
         - ninja
         - llvmdev {{ version }}    # [build_platform != target_platform]
       host:
+        - python
+        - numpy>=1.23
+        - pybind11>=2.8.0
         - {{ pin_subpackage("libmlir", exact=True) }}
         - llvmdev {{ version }}
         - llvm {{ version }}
@@ -68,6 +74,9 @@ outputs:
         - ninja
         - llvmdev {{ version }}    # [build_platform != target_platform]
       host:
+        - python
+        - numpy>=1.23
+        - pybind11>=2.8.0
         - llvmdev {{ version }}
         - llvm {{ version }}
         - zlib
@@ -98,6 +107,9 @@ outputs:
         - ninja
         - llvmdev {{ version }}    # [build_platform != target_platform]
       host:
+        - python
+        - numpy>=1.23
+        - pybind11>=2.8.0
         - llvmdev {{ version }}
         - llvm {{ version }}
         - zlib
@@ -108,6 +120,44 @@ outputs:
       commands:
         - test -f "$PREFIX/lib/libMLIR${SHLIB_EXT}"            # [unix]
         - if exist %LIBRARY_BIN%\\libmlir.dll exit 1           # [win]
+  - name: mlir-python-bindings
+    script: install_libmlir.sh  # [unix]
+    script: install_mlir.bat    # [win]
+    build:
+      {% if not win %}
+      run_exports:  # [unix]
+        - {{ pin_subpackage("libmlir", exact=True) }}  # [unix]
+      {% else %}
+      run_exports:  # [win]
+        - {{ pin_subpackage("mlir", exact=True) }}  # [win]
+      {% endif %}
+    requirements:
+      build:
+        - {{ compiler('cxx') }}
+        - cmake
+        - ninja
+        - llvmdev {{ version }}   # [build_platform != target_platform]
+      host:
+        - python
+        - numpy>=1.23
+        - pybind11>=2.8.0
+        - llvmdev {{ version }}
+        - llvm {{ version }}
+        - zlib
+        - {{ pin_subpackage("libmlir", exact=True) }}  # [unix]
+        - {{ pin_subpackage("mlir", exact=True) }}     # [win]
+      run:
+        - python
+        - numpy x.x
+        - pyyaml
+        - {{ pin_subpackage("libmlir", exact=True) }}  # [unix]
+        - {{ pin_subpackage("mlir", exact=True) }}     # [win]
+      test:
+        commands:
+          - test -f "$SP_DIR/mlir/ir.py"                               # [unix]
+          - test -f "$SP_DIR/mlir/execution_engine.py"                 # [unix]
+          - if not exist "%SP_DIR%"\\mlir\\ir.py exit 1                # [win]
+          - if not exist "%SP_DIR%"\\mlir\\execution_engine.py exit 1  # [win]
 
 about:
   home: http://llvm.org/

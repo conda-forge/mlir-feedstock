@@ -9,7 +9,7 @@ cmake -GNinja ^
   -DLLVM_BUILD_TOOLS=ON ^
   -DLLVM_BUILD_UTILS=ON ^
   -DMLIR_ENABLE_BINDINGS_PYTHON=ON ^
-  -DPython3_EXECUTABLE=`which python` ^
+  -DPython3_EXECUTABLE="%PYTHON%" ^
   ..\mlir
 if %ERRORLEVEL% neq 0 exit 1
 

@@ -23,8 +23,8 @@ requirements:
     - llvmdev {{ version }}  # [build_platform != target_platform]
   host:
     - python
-    - numpy>=1.23
-    - pybind11>=2.8.0
+    - numpy >=1.23
+    - pybind11 >=2.8.0
     - llvmdev {{ version }}
     - llvm {{ version }}
     - zlib
@@ -41,8 +41,8 @@ outputs:
         - llvmdev {{ version }}    # [build_platform != target_platform]
       host:
         - python
-        - numpy>=1.23
-        - pybind11>=2.8.0
+        - numpy >=1.23
+        - pybind11 >=2.8.0
         - {{ pin_subpackage("libmlir", exact=True) }}
         - llvmdev {{ version }}
         - llvm {{ version }}
@@ -75,8 +75,8 @@ outputs:
         - llvmdev {{ version }}    # [build_platform != target_platform]
       host:
         - python
-        - numpy>=1.23
-        - pybind11>=2.8.0
+        - numpy >=1.23
+        - pybind11 >=2.8.0
         - llvmdev {{ version }}
         - llvm {{ version }}
         - zlib
@@ -108,8 +108,8 @@ outputs:
         - llvmdev {{ version }}    # [build_platform != target_platform]
       host:
         - python
-        - numpy>=1.23
-        - pybind11>=2.8.0
+        - numpy >=1.23
+        - pybind11 >=2.8.0
         - llvmdev {{ version }}
         - llvm {{ version }}
         - zlib
@@ -139,8 +139,8 @@ outputs:
         - llvmdev {{ version }}   # [build_platform != target_platform]
       host:
         - python
-        - numpy>=1.23
-        - pybind11>=2.8.0
+        - numpy >=1.23
+        - pybind11 >=2.8.0
         - llvmdev {{ version }}
         - llvm {{ version }}
         - zlib
@@ -152,12 +152,12 @@ outputs:
         - pyyaml
         - {{ pin_subpackage("libmlir", exact=True) }}  # [unix]
         - {{ pin_subpackage("mlir", exact=True) }}     # [win]
-      test:
-        commands:
-          - test -f "$SP_DIR/mlir/ir.py"                               # [unix]
-          - test -f "$SP_DIR/mlir/execution_engine.py"                 # [unix]
-          - if not exist "%SP_DIR%"\\mlir\\ir.py exit 1                # [win]
-          - if not exist "%SP_DIR%"\\mlir\\execution_engine.py exit 1  # [win]
+    test:
+      commands:
+        - test -f "$SP_DIR/mlir/ir.py"                               # [unix]
+        - test -f "$SP_DIR/mlir/execution_engine.py"                 # [unix]
+        - if not exist "%SP_DIR%"\\mlir\\ir.py exit 1                # [win]
+        - if not exist "%SP_DIR%"\\mlir\\execution_engine.py exit 1  # [win]
 
 about:
   home: http://llvm.org/

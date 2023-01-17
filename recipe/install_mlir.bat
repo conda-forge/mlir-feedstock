@@ -9,5 +9,5 @@ if "%PKG_NAME%" == "mlir-python-bindings" (
 echo "Listing of PREFIX:"
 dir "%PREFIX%"
 echo "Removing PREFIX/python_packages and PREFIX/src"
-rmdir /s /q "%PREFIX%"\\python_packages
-rmdir /s /q "%PREFIX%"\\src
+if exist "%PREFIX%"\\python_packages rmdir /s /q "%PREFIX%"\\python_packages
+if exist "%PREFIX%"\\src rmdir /s /q "%PREFIX%"\\src

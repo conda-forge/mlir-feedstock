@@ -22,8 +22,8 @@ requirements:
     - {{ compiler('cxx') }}
     - llvmdev {{ version }}  # [build_platform != target_platform]
     - python                 # [build_platform != target_platform]
-    - numpy                  # [build_platform != target_platform]
-    - pybind11               # [build_platform != target_platform]
+    - numpy >=1.23           # [build_platform != target_platform]
+    - pybind11 >=2.8.0       # [build_platform != target_platform]
   host:
     - llvmdev {{ version }}
     - llvm {{ version }}
@@ -43,8 +43,8 @@ outputs:
         - ninja
         - llvmdev {{ version }}    # [build_platform != target_platform]
         - python                   # [build_platform != target_platform]
-        - numpy                    # [build_platform != target_platform]
-        - pybind11                 # [build_platform != target_platform]
+        - numpy >=1.23             # [build_platform != target_platform]
+        - pybind11 >=2.8.0         # [build_platform != target_platform]
       host:
         - python
         - numpy >=1.23
@@ -80,8 +80,8 @@ outputs:
         - ninja
         - llvmdev {{ version }}    # [build_platform != target_platform]
         - python                   # [build_platform != target_platform]
-        - numpy                    # [build_platform != target_platform]
-        - pybind11                 # [build_platform != target_platform]
+        - numpy >=1.23             # [build_platform != target_platform]
+        - pybind11 >=2.8.0         # [build_platform != target_platform]
       host:
         - python
         - numpy >=1.23
@@ -116,8 +116,8 @@ outputs:
         - ninja
         - llvmdev {{ version }}    # [build_platform != target_platform]
         - python                   # [build_platform != target_platform]
-        - numpy                    # [build_platform != target_platform]
-        - pybind11                 # [build_platform != target_platform]
+        - numpy >=1.23             # [build_platform != target_platform]
+        - pybind11 >=2.8.0         # [build_platform != target_platform]
       host:
         - python
         - numpy >=1.23

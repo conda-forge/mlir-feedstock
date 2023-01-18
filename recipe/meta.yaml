@@ -148,7 +148,10 @@ outputs:
         - {{ compiler('cxx') }}
         - cmake
         - ninja
-        - llvmdev {{ version }}   # [build_platform != target_platform]
+        - llvmdev {{ version }}    # [build_platform != target_platform]
+        - python                   # [build_platform != target_platform]
+        - numpy >=1.23             # [build_platform != target_platform]
+        - pybind11 >=2.8.0         # [build_platform != target_platform]
       host:
         - python
         - numpy >=1.23

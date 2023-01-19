@@ -14,7 +14,7 @@ else
   rm -rf $BUILD_PREFIX/bin/llvm-tblgen
 fi
 
-if [[ "${target_platform}" != "osx-arm64" ]]; then
+if [[ "${PKG_NAME}" == "mlir-python-bindings" ]]; then
   CMAKE_ARGS="${CMAKE_ARGS} -DMLIR_ENABLE_BINDINGS_PYTHON=ON -DPython3_EXECUTABLE=$PYTHON"
 fi
 

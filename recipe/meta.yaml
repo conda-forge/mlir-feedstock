@@ -21,20 +21,10 @@ requirements:
     - ninja
     - {{ compiler('cxx') }}
     - llvmdev {{ version }}  # [build_platform != target_platform]
-    {% if not arm64 %}
-    - python                 # [build_platform != target_platform]
-    - numpy >=1.23           # [build_platform != target_platform]
-    - pybind11 >=2.8.0       # [build_platform != target_platform]
-    {% endif %}
   host:
     - llvmdev {{ version }}
     - llvm {{ version }}
     - zlib
-    {% if not arm64 %}
-    - python
-    - numpy >=1.23
-    - pybind11 >=2.8.0
-    {% endif %}
 
 outputs:
   - name: mlir
@@ -46,17 +36,7 @@ outputs:
         - cmake
         - ninja
         - llvmdev {{ version }}    # [build_platform != target_platform]
-        {% if not arm64 %}
-        - python                   # [build_platform != target_platform]
-        - numpy >=1.23             # [build_platform != target_platform]
-        - pybind11 >=2.8.0         # [build_platform != target_platform]
-        {% endif %}
       host:
-        {% if not arm64 %}
-        - python
-        - numpy >=1.23
-        - pybind11 >=2.8.0
-        {% endif %}
         - {{ pin_subpackage("libmlir", exact=True) }}
         - llvmdev {{ version }}
         - llvm {{ version }}
@@ -87,17 +67,7 @@ outputs:
         - cmake
         - ninja
         - llvmdev {{ version }}    # [build_platform != target_platform]
-        {% if not arm64 %}
-        - python                   # [build_platform != target_platform]
-        - numpy >=1.23             # [build_platform != target_platform]
-        - pybind11 >=2.8.0         # [build_platform != target_platform]
-        {% endif %}
       host:
-        {% if not arm64 %}
-        - python
-        - numpy >=1.23
-        - pybind11 >=2.8.0
-        {% endif %}
         - llvmdev {{ version }}
         - llvm {{ version }}
         - zlib
@@ -127,17 +97,7 @@ outputs:
         - cmake
         - ninja
         - llvmdev {{ version }}    # [build_platform != target_platform]
-        {% if not arm64 %}
-        - python                   # [build_platform != target_platform]
-        - numpy >=1.23             # [build_platform != target_platform]
-        - pybind11 >=2.8.0         # [build_platform != target_platform]
-        {% endif %}
       host:
-        {% if not arm64 %}
-        - python
-        - numpy >=1.23
-        - pybind11 >=2.8.0
-        {% endif %}
         - llvmdev {{ version }}
         - llvm {{ version }}
         - zlib

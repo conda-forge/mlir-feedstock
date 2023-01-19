@@ -1,6 +1,7 @@
 mkdir build
 cd build
 
+if "%PKG_NAME%" == "mlir-python-bindings" (
 cmake -GNinja ^
   -DCMAKE_BUILD_TYPE=Release ^
   -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
@@ -11,6 +12,17 @@ cmake -GNinja ^
   -DMLIR_ENABLE_BINDINGS_PYTHON=ON ^
   -DPython3_EXECUTABLE="%PYTHON%" ^
   ..\mlir
+) else (
+cmake -GNinja ^
+  -DCMAKE_BUILD_TYPE=Release ^
+  -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
+  -DCMAKE_PREFIX_PATH=%LIBRARY_PREFIX% ^
+  -DLLVM_USE_INTEL_JITEVENTS=1 ^
+  -DLLVM_BUILD_TOOLS=ON ^
+  -DLLVM_BUILD_UTILS=ON ^
+  ..\mlir
+)
+
 if %ERRORLEVEL% neq 0 exit 1
 
 ninja -j%CPU_COUNT%

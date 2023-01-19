@@ -14,8 +14,8 @@ else
   rm -rf $BUILD_PREFIX/bin/llvm-tblgen
 fi
 
-if [[ "${target_platform}" == "osx-arm64" ]]; then
-  CMAKE_ARGS="${CMAKE_ARGS} -DMLIR_ENABLE_BINDINGS_PYTHON=ON"
+if [[ "${target_platform}" != "osx-arm64" ]]; then
+  CMAKE_ARGS="${CMAKE_ARGS} -DMLIR_ENABLE_BINDINGS_PYTHON=ON;-DPython3_EXECUTABLE=$PYTHON"
 fi
 
 mkdir -p build
@@ -28,7 +28,6 @@ cmake ${CMAKE_ARGS} \
   -DLLVM_LINK_LLVM_DYLIB=ON \
   -DLLVM_BUILD_TOOLS=ON \
   -DLLVM_BUILD_UTILS=ON \
-  -DPython3_EXECUTABLE="$PYTHON" \
   -GNinja \
   ../mlir
 

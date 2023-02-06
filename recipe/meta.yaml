@@ -118,20 +118,19 @@ outputs:
         - ninja
         - llvmdev {{ version }}    # [build_platform != target_platform]
         - python                   # [build_platform != target_platform]
-        - numpy >=1.23             # [build_platform != target_platform]
+        - numpy                    # [build_platform != target_platform]
         - pybind11 >=2.8.0         # [build_platform != target_platform]
       host:
         - python
-        - numpy >=1.23
+        - numpy
         - pybind11 >=2.8.0
         - llvmdev {{ version }}
         - llvm {{ version }}
         - zlib
         - {{ pin_subpackage("libmlir", exact=True) }}  # [unix]
-        - {{ pin_subpackage("mlir", exact=True) }}     # [win]
+        - {{ pin_subpackage("mlir", exact=True) }}
       run:
         - python
-        - numpy x.x
         - pyyaml
         - {{ pin_subpackage("libmlir", exact=True) }}  # [unix]
         - {{ pin_subpackage("mlir", exact=True) }}     # [win]

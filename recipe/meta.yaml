@@ -111,6 +111,8 @@ outputs:
   - name: mlir-python-bindings
     script: build_and_install_python.sh     # [unix]
     script: build_and_install_python.bat    # [win]
+    files:
+      - {{ SP_DIR }}/mlir
     requirements:
       build:
         - {{ compiler('cxx') }}

@@ -109,17 +109,8 @@ outputs:
         - test -f "$PREFIX/lib/libMLIR${SHLIB_EXT}"            # [unix]
         - if exist %LIBRARY_BIN%\\libmlir.dll exit 1           # [win]
   - name: mlir-python-bindings
-    script: install_libmlir.sh  # [unix]
-    script: install_mlir.bat    # [win]
-    build:
-      skip : true  # [osx and arm64]
-      {% if not win %}
-      run_exports:  # [unix]
-        - {{ pin_subpackage("libmlir", exact=True) }}  # [unix]
-      {% else %}
-      run_exports:  # [win]
-        - {{ pin_subpackage("mlir", exact=True) }}  # [win]
-      {% endif %}
+    script: build_and_install_python.sh     # [unix]
+    script: build_and_install_python.bat    # [win]
     requirements:
       build:
         - {{ compiler('cxx') }}

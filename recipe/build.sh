@@ -16,10 +16,10 @@ fi
 
 if [[ "${PKG_NAME}" == "mlir-python-bindings" ]]; then
   CMAKE_ARGS="${CMAKE_ARGS} -DMLIR_ENABLE_BINDINGS_PYTHON=ON -DPython3_EXECUTABLE=$PYTHON"
-  CMAKE_ARGS="${CMAKE_ARGS} -D_Python3_INCLUDE_DIR=$PREFIX/include/python${PY_VER}"
-  CMAKE_ARGS="${CMAKE_ARGS} -DPython3_INCLUDE_DIRS=$PREFIX/include/python${PY_VER}"
-  CMAKE_ARGS="${CMAKE_ARGS} -DPython3_NumPy_INCLUDE_DIRS=$SP_DIR/numpy/core/include"
-  CMAKE_ARGS="${CMAKE_ARGS} -DPYTHON_MODULE_EXTENSION=$($PYTHON -c "import sysconfig;print(sysconfig.get_config_var('EXT_SUFFIX'))")"
+  if [[ -f "build/CMakeCache.txt" ]]; then
+	# invalidate the cache as we are building multiple times for different python versions
+    sed -i.bak "/^_Python3_INTERPRETER_PROPERTIES/d" build/CMakeCache.txt
+  fi
 fi
 
 mkdir -p build

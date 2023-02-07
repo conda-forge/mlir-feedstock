@@ -1,4 +1,2 @@
-c_compiler:            # [win]
-- vs2019               # [win]
-cxx_compiler:          # [win]
-- vs2019               # [win]
+cxx_compiler_version:  # [osx and arm64]
+  - 15                 # [osx and arm64]

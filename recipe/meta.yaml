@@ -1,4 +1,4 @@
-{% set version = "14.0.0.rc1" %}
+{% set version = "15.0.7" %}
 {% set major_version = version.split(".")[0] %}
 
 package:
@@ -7,12 +7,10 @@ package:
 
 source:
   - url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(".rc", "-rc") }}/llvm-project-{{ version.replace(".rc", "rc") }}.src.tar.xz
-    sha256: 3de5fb12e2c43ba4964fabb1baddea870b652d2c971aaff1172ca0c57bb1f54a
+    sha256: 8b5fcb24b4128cf04df1b0b9410ce8b1a729cb3c544e6da885d234280dedeac6
     patches:
       # https://reviews.llvm.org/D99470
       - 0001-Support-cross-compiling-standalone-MLIR.patch
-      # https://github.com/llvm/llvm-project/issues/53989
-      - 0002-Revert-Disable-the-MLIR-ExecutionEngine-library-when.patch
 
 build:
   number: 0

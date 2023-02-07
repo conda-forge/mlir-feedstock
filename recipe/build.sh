@@ -10,7 +10,7 @@ fi
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-0}" == "1" ]]; then
   # Can't have llvmdev in BUILD_PREFIX as llvmdev conflicts with the clang compiler
   # TODO: remove conflict between llvmdev and clang compiler
-  conda create -p $BUILD_PREFIX/llvm llvmdev=$PKG_VERSION --yes --quiet
+  conda create -p $BUILD_PREFIX/llvm llvmdev=$PKG_VERSION -c conda-forge --yes --quiet
   CMAKE_ARGS="${CMAKE_ARGS} -DLLVM_TABLEGEN_EXE=$BUILD_PREFIX/llvm/bin/llvm-tblgen -DNATIVE_LLVM_DIR=$BUILD_PREFIX/llvm/lib/cmake/llvm"
   CMAKE_ARGS="${CMAKE_ARGS} -DCROSS_TOOLCHAIN_FLAGS_NATIVE=-DCMAKE_C_COMPILER=$CC_FOR_BUILD;-DCMAKE_CXX_COMPILER=$CXX_FOR_BUILD;-DCMAKE_C_FLAGS=-O2;-DCMAKE_CXX_FLAGS=-O2;-DCMAKE_EXE_LINKER_FLAGS=\"-L$BUILD_PREFIX/lib\";-DCMAKE_MODULE_LINKER_FLAGS=;-DCMAKE_SHARED_LINKER_FLAGS=;-DCMAKE_STATIC_LINKER_FLAGS=;-DCMAKE_AR=$(which ${AR});-DCMAKE_RANLIB=$(which ${RANLIB});-DZLIB_ROOT=${BUILD_PREFIX}"
 else

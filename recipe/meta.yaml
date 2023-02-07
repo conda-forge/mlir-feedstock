@@ -108,6 +108,7 @@ outputs:
       commands:
         - test -f "$PREFIX/lib/libMLIR${SHLIB_EXT}"            # [unix]
         - if exist %LIBRARY_BIN%\\libmlir.dll exit 1           # [win]
+
   - name: mlir-python-bindings
     script: build_and_install_python.sh     # [unix]
     script: build_and_install_python.bat    # [win]
@@ -118,7 +119,6 @@ outputs:
         - {{ compiler('cxx') }}
         - cmake
         - ninja
-        - llvmdev {{ version }}                # [build_platform != target_platform]
         - cross-python_{{ target_platform }}   # [build_platform != target_platform]
         - python                               # [build_platform != target_platform]
         - numpy                                # [build_platform != target_platform]

@@ -1,7 +1,7 @@
 From 23936ca8ed236eec1201051962900334c4455ab3 Mon Sep 17 00:00:00 2001
 From: Isuru Fernando <isuruf@gmail.com>
 Date: Tue, 6 Apr 2021 13:36:08 +0200
-Subject: [PATCH] Support cross compiling standalone MLIR
+Subject: [PATCH 1/2] Support cross compiling standalone MLIR
 
 ---
  mlir/CMakeLists.txt | 13 +++++++++++++

@@ -11,7 +11,6 @@ source:
     patches:
       # https://reviews.llvm.org/D99470
       - patches/0001-Support-cross-compiling-standalone-MLIR.patch
-      - patches/0002-set-CMAKE_CXX_STANDARD-in-mlir-CMakeLists.txt.patch
 
 build:
   number: 0

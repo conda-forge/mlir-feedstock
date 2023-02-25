@@ -1,11 +1,11 @@
-About mlir
-==========
+About mlir-feedstock
+====================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/mlir-feedstock/blob/main/LICENSE.txt)
 
 Home: http://llvm.org/
 
 Package license: Apache-2.0 WITH LLVM-exception
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/mlir-feedstock/blob/main/LICENSE.txt)
 
 Summary: Multi-Level IR Compiler Framework
 
@@ -82,7 +82,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libmlir-green.svg)](https://anaconda.org/conda-forge/libmlir) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libmlir.svg)](https://anaconda.org/conda-forge/libmlir) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libmlir.svg)](https://anaconda.org/conda-forge/libmlir) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libmlir.svg)](https://anaconda.org/conda-forge/libmlir) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-libmlir15-green.svg)](https://anaconda.org/conda-forge/libmlir15) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libmlir15.svg)](https://anaconda.org/conda-forge/libmlir15) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libmlir15.svg)](https://anaconda.org/conda-forge/libmlir15) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libmlir15.svg)](https://anaconda.org/conda-forge/libmlir15) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libmlir16-green.svg)](https://anaconda.org/conda-forge/libmlir16) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libmlir16.svg)](https://anaconda.org/conda-forge/libmlir16) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libmlir16.svg)](https://anaconda.org/conda-forge/libmlir16) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libmlir16.svg)](https://anaconda.org/conda-forge/libmlir16) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-mlir-green.svg)](https://anaconda.org/conda-forge/mlir) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mlir.svg)](https://anaconda.org/conda-forge/mlir) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mlir.svg)](https://anaconda.org/conda-forge/mlir) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mlir.svg)](https://anaconda.org/conda-forge/mlir) |
 
 Installing mlir
@@ -95,16 +95,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `libmlir, libmlir15, mlir` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `libmlir, libmlir16, mlir` can be installed with `conda`:
 
 ```
-conda install libmlir libmlir15 mlir
+conda install libmlir libmlir16 mlir
 ```
 
 or with `mamba`:
 
 ```
-mamba install libmlir libmlir15 mlir
+mamba install libmlir libmlir16 mlir
 ```
 
 It is possible to list all of the versions of `libmlir` available on your platform with `conda`:

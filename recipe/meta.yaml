@@ -61,7 +61,7 @@ outputs:
     script: install_libmlir.sh  # [unix]
     build:
       run_exports:
-        - {{ pin_subpackage("libmlir" + major_version, max_pin="x.x") }}   # [unix]
+        - {{ pin_subpackage("libmlir" ~ major_version, max_pin="x.x") }}   # [unix]
       skip: true  # [win]
     requirements:
       build:
@@ -91,7 +91,7 @@ outputs:
     build:
       {% if not win %}
       run_exports:   # [unix]
-        - {{ pin_subpackage("libmlir" + major_version, max_pin="x.x") }}   # [unix]
+        - {{ pin_subpackage("libmlir" ~ major_version, max_pin="x.x") }}   # [unix]
       {% endif %}
     requirements:
       build:
@@ -103,9 +103,9 @@ outputs:
         - llvmdev {{ version }}
         - llvm {{ version }}
         - zlib
-        - {{ pin_subpackage("libmlir" + major_version, exact=True) }}  # [unix]
+        - {{ pin_subpackage("libmlir" ~ major_version, exact=True) }}  # [unix]
       run:
-        - {{ pin_subpackage("libmlir" + major_version, exact=True) }}  # [unix]
+        - {{ pin_subpackage("libmlir" ~ major_version, exact=True) }}  # [unix]
     test:
       commands:
         - test -f "$PREFIX/lib/libMLIR${SHLIB_EXT}"            # [unix]

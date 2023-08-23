@@ -1,4 +1,4 @@
-{% set version = "17.0.0.rc2" %}
+{% set version = "17.0.0.rc3" %}
 {% set major_version = version.split(".")[0] %}
 
 {% set git = "git" if version.split(".")[-1] == "dev0" else "" %}
@@ -9,7 +9,7 @@ package:
 
 source:
   - url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(".rc", "-rc") }}/llvm-project-{{ version.replace(".rc", "rc") }}.src.tar.xz
-    sha256: 71c018a6c0d3f7ccfe66a8ea7a68281a256fcd3bc35099e61616a92dcbbf0859
+    sha256: 60493f4e974fcca7b739aea4901af2d957b0eaea34b42815359be59cf6c88fa2
     patches:
       # https://reviews.llvm.org/D99470
       - patches/0001-Support-cross-compiling-standalone-MLIR.patch

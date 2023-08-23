@@ -1,7 +1,9 @@
 {% set version = "17.0.0.rc3" %}
 {% set major_version = version.split(".")[0] %}
 
-{% set git = "git" if version.split(".")[-1] == "dev0" else "" %}
+# as of LLVM 17, we expect an "rc" suffix for the release candidates
+{% set extra = "rc" if version.split(".")[-1] not in range(7) else "" %}
+{% set extra = "git" if version.split(".")[-1] == "dev0" else extra %}
 
 package:
   name: mlir-split
@@ -81,12 +83,12 @@ outputs:
     test:
       commands:
         # presence of versioned libraries
-        - test -f $PREFIX/lib/libMLIR.so.{{ major_version }}{{ git }}                       # [linux]
-        - test -f $PREFIX/lib/libmlir_runner_utils.so.{{ major_version }}{{ git }}          # [linux]
-        - test -f $PREFIX/lib/libmlir_c_runner_utils.so.{{ major_version }}{{ git }}        # [linux]
-        - test -f $PREFIX/lib/libMLIR.{{ major_version }}{{ git }}.dylib                    # [osx]
-        - test -f $PREFIX/lib/libmlir_runner_utils.{{ major_version }}{{ git }}.dylib       # [osx]
-        - test -f $PREFIX/lib/libmlir_c_runner_utils.{{ major_version }}{{ git }}.dylib     # [osx]
+        - test -f $PREFIX/lib/libMLIR.so.{{ major_version }}{{ extra }}                     # [linux]
+        - test -f $PREFIX/lib/libmlir_runner_utils.so.{{ major_version }}{{ extra }}        # [linux]
+        - test -f $PREFIX/lib/libmlir_c_runner_utils.so.{{ major_version }}{{ extra }}      # [linux]
+        - test -f $PREFIX/lib/libMLIR.{{ major_version }}{{ extra }}.dylib                  # [osx]
+        - test -f $PREFIX/lib/libmlir_runner_utils.{{ major_version }}{{ extra }}.dylib     # [osx]
+        - test -f $PREFIX/lib/libmlir_c_runner_utils.{{ major_version }}{{ extra }}.dylib   # [osx]
 
         # absence of unversioned libraries
         - test ! -f $PREFIX/lib/libMLIR$SHLIB_EXT                   # [unix]

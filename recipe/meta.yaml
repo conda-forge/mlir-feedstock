@@ -1,7 +1,9 @@
-{% set version = "17.0.0.rc2" %}
+{% set version = "17.0.0.rc3" %}
 {% set major_version = version.split(".")[0] %}
 
-{% set git = "git" if version.split(".")[-1] == "dev0" else "" %}
+# as of LLVM 17, we expect an "rc" suffix for the release candidates
+{% set extra = "rc" if version.split(".")[-1] not in range(7) else "" %}
+{% set extra = "git" if version.split(".")[-1] == "dev0" else extra %}
 
 package:
   name: mlir-split
@@ -9,7 +11,7 @@ package:
 
 source:
   - url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(".rc", "-rc") }}/llvm-project-{{ version.replace(".rc", "rc") }}.src.tar.xz
-    sha256: 71c018a6c0d3f7ccfe66a8ea7a68281a256fcd3bc35099e61616a92dcbbf0859
+    sha256: 60493f4e974fcca7b739aea4901af2d957b0eaea34b42815359be59cf6c88fa2
     patches:
       # https://reviews.llvm.org/D99470
       - patches/0001-Support-cross-compiling-standalone-MLIR.patch
@@ -81,12 +83,12 @@ outputs:
     test:
       commands:
         # presence of versioned libraries
-        - test -f $PREFIX/lib/libMLIR.so.{{ major_version }}{{ git }}                       # [linux]
-        - test -f $PREFIX/lib/libmlir_runner_utils.so.{{ major_version }}{{ git }}          # [linux]
-        - test -f $PREFIX/lib/libmlir_c_runner_utils.so.{{ major_version }}{{ git }}        # [linux]
-        - test -f $PREFIX/lib/libMLIR.{{ major_version }}{{ git }}.dylib                    # [osx]
-        - test -f $PREFIX/lib/libmlir_runner_utils.{{ major_version }}{{ git }}.dylib       # [osx]
-        - test -f $PREFIX/lib/libmlir_c_runner_utils.{{ major_version }}{{ git }}.dylib     # [osx]
+        - test -f $PREFIX/lib/libMLIR.so.{{ major_version }}{{ extra }}                     # [linux]
+        - test -f $PREFIX/lib/libmlir_runner_utils.so.{{ major_version }}{{ extra }}        # [linux]
+        - test -f $PREFIX/lib/libmlir_c_runner_utils.so.{{ major_version }}{{ extra }}      # [linux]
+        - test -f $PREFIX/lib/libMLIR.{{ major_version }}{{ extra }}.dylib                  # [osx]
+        - test -f $PREFIX/lib/libmlir_runner_utils.{{ major_version }}{{ extra }}.dylib     # [osx]
+        - test -f $PREFIX/lib/libmlir_c_runner_utils.{{ major_version }}{{ extra }}.dylib   # [osx]
 
         # absence of unversioned libraries
         - test ! -f $PREFIX/lib/libMLIR$SHLIB_EXT                   # [unix]

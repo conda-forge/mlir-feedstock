@@ -88,14 +88,14 @@ Current release info
 Installing mlir
 ===============
 
-Installing `mlir` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `mlir` from the `conda-forge/label/llvm_rc` channel can be achieved by adding `conda-forge/label/llvm_rc` to your channels with:
 
 ```
-conda config --add channels conda-forge
+conda config --add channels conda-forge/label/llvm_rc
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `libmlir, libmlir17, mlir` can be installed with `conda`:
+Once the `conda-forge/label/llvm_rc` channel has been enabled, `libmlir, libmlir17, mlir` can be installed with `conda`:
 
 ```
 conda install libmlir libmlir17 mlir
@@ -110,26 +110,26 @@ mamba install libmlir libmlir17 mlir
 It is possible to list all of the versions of `libmlir` available on your platform with `conda`:
 
 ```
-conda search libmlir --channel conda-forge
+conda search libmlir --channel conda-forge/label/llvm_rc
 ```
 
 or with `mamba`:
 
 ```
-mamba search libmlir --channel conda-forge
+mamba search libmlir --channel conda-forge/label/llvm_rc
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search libmlir --channel conda-forge
+mamba repoquery search libmlir --channel conda-forge/label/llvm_rc
 
 # List packages depending on `libmlir`:
-mamba repoquery whoneeds libmlir --channel conda-forge
+mamba repoquery whoneeds libmlir --channel conda-forge/label/llvm_rc
 
 # List dependencies of `libmlir`:
-mamba repoquery depends libmlir --channel conda-forge
+mamba repoquery depends libmlir --channel conda-forge/label/llvm_rc
 ```
 
 
@@ -151,7 +151,7 @@ available continuous integration services. Thanks to the awesome service provide
 [CircleCI](https://circleci.com/), [AppVeyor](https://www.appveyor.com/),
 [Drone](https://cloud.drone.io/welcome), and [TravisCI](https://travis-ci.com/)
 it is possible to build and upload installable packages to the
-[conda-forge](https://anaconda.org/conda-forge) [Anaconda-Cloud](https://anaconda.org/)
+[conda-forge](https://anaconda.org/conda-forge) [anaconda.org](https://anaconda.org/)
 channel for Linux, Windows and OSX respectively.
 
 To manage the continuous integration and simplify feedstock maintenance

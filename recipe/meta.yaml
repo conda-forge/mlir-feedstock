@@ -1,4 +1,4 @@
-{% set version = "18.1.4" %}
+{% set version = "18.1.5" %}
 {% set major_version = version.split(".")[0] %}
 {% set maj_min = major_version ~ "." ~ version.split(".")[1] %}
 
@@ -12,7 +12,7 @@ package:
 
 source:
   - url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(".rc", "-rc") }}/llvm-project-{{ version.replace(".rc", "rc") }}.src.tar.xz
-    sha256: 2c01b2fbb06819a12a92056a7fd4edcdc385837942b5e5260b9c2c0baff5116b
+    sha256: 3591a52761a7d390ede51af01ea73abfecc4b1d16445f9d019b67a57edd7de56
     patches:
       # https://reviews.llvm.org/D99470
       - patches/0001-Support-cross-compiling-standalone-MLIR.patch
@@ -24,6 +24,7 @@ requirements:
   build:
     - cmake
     - ninja
+    - {{ stdlib('c') }}
     - {{ compiler('cxx') }}
     - llvmdev {{ version }}  # [build_platform != target_platform]
     - zlib                   # [build_platform != target_platform]
@@ -38,6 +39,7 @@ outputs:
     script: install_mlir.bat  # [win]
     requirements:
       build:
+        - {{ stdlib('c') }}
         - {{ compiler('cxx') }}
         - cmake
         - ninja
@@ -74,6 +76,7 @@ outputs:
       skip: true  # [win]
     requirements:
       build:
+        - {{ stdlib('c') }}
         - {{ compiler('cxx') }}
         - cmake
         - ninja
@@ -107,6 +110,7 @@ outputs:
       {% endif %}
     requirements:
       build:
+        - {{ stdlib('c') }}
         - {{ compiler('cxx') }}
         - cmake
         - ninja

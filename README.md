@@ -82,54 +82,54 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libmlir-green.svg)](https://anaconda.org/conda-forge/libmlir) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libmlir.svg)](https://anaconda.org/conda-forge/libmlir) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libmlir.svg)](https://anaconda.org/conda-forge/libmlir) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libmlir.svg)](https://anaconda.org/conda-forge/libmlir) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-libmlir18-green.svg)](https://anaconda.org/conda-forge/libmlir18) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libmlir18.svg)](https://anaconda.org/conda-forge/libmlir18) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libmlir18.svg)](https://anaconda.org/conda-forge/libmlir18) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libmlir18.svg)](https://anaconda.org/conda-forge/libmlir18) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libmlir19-green.svg)](https://anaconda.org/conda-forge/libmlir19) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libmlir19.svg)](https://anaconda.org/conda-forge/libmlir19) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libmlir19.svg)](https://anaconda.org/conda-forge/libmlir19) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libmlir19.svg)](https://anaconda.org/conda-forge/libmlir19) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-mlir-green.svg)](https://anaconda.org/conda-forge/mlir) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mlir.svg)](https://anaconda.org/conda-forge/mlir) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mlir.svg)](https://anaconda.org/conda-forge/mlir) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mlir.svg)](https://anaconda.org/conda-forge/mlir) |
 
 Installing mlir
 ===============
 
-Installing `mlir` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `mlir` from the `conda-forge/label/llvm_dev` channel can be achieved by adding `conda-forge/label/llvm_dev` to your channels with:
 
 ```
-conda config --add channels conda-forge
+conda config --add channels conda-forge/label/llvm_dev
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `libmlir, libmlir18, mlir` can be installed with `conda`:
+Once the `conda-forge/label/llvm_dev` channel has been enabled, `libmlir, libmlir19, mlir` can be installed with `conda`:
 
 ```
-conda install libmlir libmlir18 mlir
+conda install libmlir libmlir19 mlir
 ```
 
 or with `mamba`:
 
 ```
-mamba install libmlir libmlir18 mlir
+mamba install libmlir libmlir19 mlir
 ```
 
 It is possible to list all of the versions of `libmlir` available on your platform with `conda`:
 
 ```
-conda search libmlir --channel conda-forge
+conda search libmlir --channel conda-forge/label/llvm_dev
 ```
 
 or with `mamba`:
 
 ```
-mamba search libmlir --channel conda-forge
+mamba search libmlir --channel conda-forge/label/llvm_dev
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search libmlir --channel conda-forge
+mamba repoquery search libmlir --channel conda-forge/label/llvm_dev
 
 # List packages depending on `libmlir`:
-mamba repoquery whoneeds libmlir --channel conda-forge
+mamba repoquery whoneeds libmlir --channel conda-forge/label/llvm_dev
 
 # List dependencies of `libmlir`:
-mamba repoquery depends libmlir --channel conda-forge
+mamba repoquery depends libmlir --channel conda-forge/label/llvm_dev
 ```
 
 

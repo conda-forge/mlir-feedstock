@@ -7,9 +7,9 @@ c_stdlib:
 c_stdlib_version:
 - '10.13'
 channel_sources:
-- conda-forge
+- conda-forge/label/llvm_dev,conda-forge
 channel_targets:
-- conda-forge main
+- conda-forge llvm_dev
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
@@ -19,4 +19,4 @@ macos_machine:
 target_platform:
 - osx-64
 zlib:
-- '1.2'
+- '1'

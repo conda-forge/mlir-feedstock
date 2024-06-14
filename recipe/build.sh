@@ -1,12 +1,15 @@
 #!/bin/bash
-
 set -euxo pipefail
 
+PARALLEL=""
 if [[ "${target_platform}" == "linux-ppc64le" ]]; then
   export CFLAGS="${CFLAGS//-fno-plt/}"
   export CXXFLAGS="${CXXFLAGS//-fno-plt/}"
+elif [[ "${target_platform}" == "linux-aarch64" ]]; then
+  # reduce parallelism on aarch to avoid OOM
+  PARALLEL="-j2"
 elif [[ "${target_platform}" == osx-* ]]; then
-    CMAKE_ARGS="$CMAKE_ARGS -DLLVM_ENABLE_LIBCXX=ON"
+  CMAKE_ARGS="$CMAKE_ARGS -DLLVM_ENABLE_LIBCXX=ON"
 fi
 
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-0}" == "1" ]]; then
@@ -29,4 +32,4 @@ cmake ${CMAKE_ARGS} \
   -GNinja \
   ../mlir
 
-ninja
+ninja ${PARALLEL}

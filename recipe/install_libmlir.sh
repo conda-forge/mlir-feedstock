@@ -1,24 +1,23 @@
 #!/bin/bash
 set -x -e
 
-cd ${SRC_DIR}/build
-ninja install
+# temporary prefix to be able to install files more granularly
+mkdir temp_prefix
+cmake --install ./build --prefix=./temp_prefix
 
-cd $PREFIX
-rm -rf libexec share bin include
-mv lib lib2
-mkdir lib
-cp lib2/libLLVM* lib/
 if [[ "$PKG_NAME" == "libmlir" ]]; then
-    cp lib2/libMLIR${SHLIB_EXT} lib/
-    cp lib2/libmlir_runner_utils${SHLIB_EXT} lib/
-    cp lib2/libmlir_c_runner_utils${SHLIB_EXT} lib/
-    cp lib2/libmlir_async_runtime${SHLIB_EXT} lib/
+    cp ./temp_prefix/lib/libMLIR${SHLIB_EXT} $PREFIX/lib/
+    cp ./temp_prefix/lib/libmlir_async_runtime${SHLIB_EXT} $PREFIX/lib/
+    cp ./temp_prefix/lib/libmlir_c_runner_utils${SHLIB_EXT} $PREFIX/lib/
+    cp ./temp_prefix/lib/libmlir_float16_utils${SHLIB_EXT} $PREFIX/lib/
+    cp ./temp_prefix/lib/libmlir_runner_utils${SHLIB_EXT} $PREFIX/lib/
 else
-    cp lib2/libMLIR.*.* lib/
-    cp lib2/libmlir_runner_utils.*.* lib/
-    cp lib2/libmlir_c_runner_utils.*.* lib/
-    cp lib2/libmlir_async_runtime.*.* lib/
+    cp ./temp_prefix/lib/libMLIR.*.* $PREFIX/lib/
+    cp ./temp_prefix/lib/libmlir_async_runtime.*.* $PREFIX/lib/
+    cp ./temp_prefix/lib/libmlir_c_runner_utils.*.* $PREFIX/lib/
+    cp ./temp_prefix/lib/libmlir_float16_utils.*.* $PREFIX/lib/
+    cp ./temp_prefix/lib/libmlir_runner_utils.*.* $PREFIX/lib/
 fi
-rm -rf lib2
 
+# clean up between builds
+rm -rf ./temp_prefix

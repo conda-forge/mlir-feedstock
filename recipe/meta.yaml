@@ -1,18 +1,23 @@
-{% set version = "14.0.0.rc1" %}
+{% set version = "19.0.0.dev0" %}
 {% set major_version = version.split(".")[0] %}
+{% set maj_min = major_version ~ "." ~ version.split(".")[1] %}
+
+# as of LLVM 17, we expect an "rc" suffix for the release candidates
+{% set extra = "rc" if version.split(".")[-1] not in "01234567" else "" %}
+{% set extra = "git" if version.split(".")[-1] == "dev0" else extra %}
 
 package:
   name: mlir-split
   version: {{ version }}
 
 source:
-  - url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(".rc", "-rc") }}/llvm-project-{{ version.replace(".rc", "rc") }}.src.tar.xz
-    sha256: 3de5fb12e2c43ba4964fabb1baddea870b652d2c971aaff1172ca0c57bb1f54a
+  - git_url: https://github.com/llvm/llvm-project.git
+    git_rev: 1754651dd150139d64cdae190afe1faabf69a403
+  # - url: https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-{{ version.replace(".rc", "-rc") }}.tar.gz
+  #   sha256: b60df7cbe02cef2523f7357120fb0d46cbb443791cde3a5fb36b82c335c0afc9
     patches:
       # https://reviews.llvm.org/D99470
-      - 0001-Support-cross-compiling-standalone-MLIR.patch
-      # https://github.com/llvm/llvm-project/issues/53989
-      - 0002-Revert-Disable-the-MLIR-ExecutionEngine-library-when.patch
+      - patches/0001-Support-cross-compiling-standalone-MLIR.patch
 
 build:
   number: 0
@@ -21,8 +26,10 @@ requirements:
   build:
     - cmake
     - ninja
+    - {{ stdlib('c') }}
     - {{ compiler('cxx') }}
     - llvmdev {{ version }}  # [build_platform != target_platform]
+    - zlib                   # [build_platform != target_platform]
   host:
     - llvmdev {{ version }}
     - llvm {{ version }}
@@ -34,6 +41,7 @@ outputs:
     script: install_mlir.bat  # [win]
     requirements:
       build:
+        - {{ stdlib('c') }}
         - {{ compiler('cxx') }}
         - cmake
         - ninja
@@ -48,23 +56,29 @@ outputs:
         - llvmdev {{ version }}
     test:
       commands:
-        - test -f "$PREFIX/include/mlir-c/Support.h"               # [unix]
-        - test -f "$PREFIX/lib/libMLIRIR.a"                        # [unix]
-        - if not exist %LIBRARY_INC%\\mlir-c\\Support.h exit 1     # [win]
-        - if not exist %LIBRARY_LIB%\\MLIRIR.lib exit 1            # [win]
-        - $PREFIX/bin/mlir-opt -version                            # [not win]
-        - if not exist "%LIBRARY_BIN%"\\mlir-opt.exe exit 1        # [win]
-        - mlir-opt -version                                        # [win]
+        # static library
+        - test -f $PREFIX/lib/libMLIRIR.a                       # [unix]
+        - if not exist %LIBRARY_LIB%\MLIRIR.lib exit 1          # [win]
+
+        # headers
+        - test -f $PREFIX/include/mlir-c/Support.h              # [unix]
+        - if not exist %LIBRARY_INC%\mlir-c\Support.h exit 1    # [win]
+
+        # binaries
         - mlir-tblgen -version
+        - $PREFIX/bin/mlir-opt -version                         # [unix]
+        - if not exist "%LIBRARY_BIN%"\mlir-opt.exe exit 1      # [win]
+        - mlir-opt -version                                     # [win]
 
   - name: libmlir{{ major_version }}
     script: install_libmlir.sh  # [unix]
     build:
       run_exports:
-        - {{ pin_subpackage("libmlir" + major_version, max_pin="x.x") }}   # [unix]
+        - {{ pin_subpackage("libmlir" ~ major_version, max_pin="x.x") }}   # [unix]
       skip: true  # [win]
     requirements:
       build:
+        - {{ stdlib('c') }}
         - {{ compiler('cxx') }}
         - cmake
         - ninja
@@ -75,26 +89,30 @@ outputs:
         - zlib
     test:
       commands:
-        - test ! -f "$PREFIX/lib/libMLIR$SHLIB_EXT"                                # [unix]
-        - test ! -f "$PREFIX/lib/libmlir_runner_utils$SHLIB_EXT"                   # [unix]
-        - test ! -f "$PREFIX/lib/libmlir_c_runner_utils$SHLIB_EXT"                 # [unix]
-        - test ! -f "$PREFIX/lib/libmlir_c_runner_utils_static.a"                  # [unix]
-        - test -f "$PREFIX/lib/libMLIR.so.{{ major_version }}"                     # [linux]
-        - test -f "$PREFIX/lib/libmlir_runner_utils.so.{{ major_version }}"        # [linux]
-        - test -f "$PREFIX/lib/libmlir_c_runner_utils.so.{{ major_version }}"      # [linux]
-        - test -f "$PREFIX/lib/libMLIR.{{ major_version }}.dylib"                  # [osx]
-        - test -f "$PREFIX/lib/libmlir_runner_utils.{{ major_version }}.dylib"     # [osx]
-        - test -f "$PREFIX/lib/libmlir_c_runner_utils.{{ major_version }}.dylib"   # [osx]
+        # presence of versioned libraries
+        - test -f $PREFIX/lib/libMLIR.so.{{ maj_min }}{{ extra }}                       # [linux]
+        - test -f $PREFIX/lib/libmlir_runner_utils.so.{{ maj_min }}{{ extra }}          # [linux]
+        - test -f $PREFIX/lib/libmlir_c_runner_utils.so.{{ maj_min }}{{ extra }}        # [linux]
+        - test -f $PREFIX/lib/libMLIR.{{ maj_min }}{{ extra }}.dylib                    # [osx]
+        - test -f $PREFIX/lib/libmlir_runner_utils.{{ maj_min }}{{ extra }}.dylib       # [osx]
+        - test -f $PREFIX/lib/libmlir_c_runner_utils.{{ maj_min }}{{ extra }}.dylib     # [osx]
+
+        # absence of unversioned libraries
+        - test ! -f $PREFIX/lib/libMLIR$SHLIB_EXT                   # [unix]
+        - test ! -f $PREFIX/lib/libmlir_runner_utils$SHLIB_EXT      # [unix]
+        - test ! -f $PREFIX/lib/libmlir_c_runner_utils$SHLIB_EXT    # [unix]
+        - test ! -f $PREFIX/lib/libmlir_c_runner_utils_static.a     # [unix]
 
   - name: libmlir
     script: install_libmlir.sh  # [unix]
     build:
       {% if not win %}
       run_exports:   # [unix]
-        - {{ pin_subpackage("libmlir" + major_version, max_pin="x.x") }}   # [unix]
+        - {{ pin_subpackage("libmlir" ~ major_version, max_pin="x.x") }}   # [unix]
       {% endif %}
     requirements:
       build:
+        - {{ stdlib('c') }}
         - {{ compiler('cxx') }}
         - cmake
         - ninja
@@ -103,13 +121,14 @@ outputs:
         - llvmdev {{ version }}
         - llvm {{ version }}
         - zlib
-        - {{ pin_subpackage("libmlir" + major_version, exact=True) }}  # [unix]
+        - {{ pin_subpackage("libmlir" ~ major_version, exact=True) }}  # [unix]
       run:
-        - {{ pin_subpackage("libmlir" + major_version, exact=True) }}  # [unix]
+        - {{ pin_subpackage("libmlir" ~ major_version, exact=True) }}  # [unix]
     test:
       commands:
-        - test -f "$PREFIX/lib/libMLIR${SHLIB_EXT}"            # [unix]
-        - if exist %LIBRARY_BIN%\\libmlir.dll exit 1           # [win]
+        # presence of unversioned libraries
+        - test -f $PREFIX/lib/libMLIR${SHLIB_EXT}       # [unix]
+        - if exist %LIBRARY_BIN%\libmlir.dll exit 1     # [win]
 
 about:
   home: http://llvm.org/
@@ -120,6 +139,7 @@ about:
 
 extra:
   recipe-maintainers:
+    - h-vetinari
     - isuruf
     - kaushikcfd
     - xhochy

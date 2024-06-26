@@ -12,14 +12,14 @@ package:
 
 source:
   # - url: https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-{{ version.replace(".rc", "-rc") }}.tar.gz
-  - url: https://github.com/llvm/llvm-project/archive/1754651dd150139d64cdae190afe1faabf69a403.tar.gz
-    sha256: e69a1b15a7972a72334229d597b78ee56a5ed16aa62299df23ecd239dfd3a8f5
+  - url: https://github.com/llvm/llvm-project/archive/edf5782f1780f480c3ae3fc0a44bf5432f9aa48b.tar.gz
+    sha256: 34129ca709be4fcc1cf3ae5565cb4ed93e497594923f32603e545aa5cd57bb7b
     patches:
       # https://reviews.llvm.org/D99470
       - patches/0001-Support-cross-compiling-standalone-MLIR.patch
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:

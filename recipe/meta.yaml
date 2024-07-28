@@ -1,9 +1,9 @@
-{% set version = "18.1.0.rc4" %}
+{% set version = "19.1.0.rc1" %}
 {% set major_version = version.split(".")[0] %}
 {% set maj_min = major_version ~ "." ~ version.split(".")[1] %}
 
-# as of LLVM 17, we expect an "rc" suffix for the release candidates
-{% set extra = "rc" if version.split(".")[-1] not in "01234567" else "" %}
+# as of LLVM 19, we expect an "-rcX" suffix for the release candidates
+{% set extra = "-" ~ version.split(".")[-1] if version.split(".")[-1] not in "0123456789" else "" %}
 {% set extra = "git" if version.split(".")[-1] == "dev0" else extra %}
 
 package:
@@ -11,8 +11,8 @@ package:
   version: {{ version }}
 
 source:
-  - url: https://github.com/llvm/llvm-project/releases/download/llvmorg-{{ version.replace(".rc", "-rc") }}/llvm-project-{{ version.replace(".rc", "rc") }}.src.tar.xz
-    sha256: bc1d243472ee4868e20760c100049078343a89aa34549c69dbab389c68e0c473
+  - url: https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-{{ version.replace(".rc", "-rc") }}.tar.gz
+    sha256: cd3b42caf8e78c497712a661303672c1a6279eb1a5ff8735488087319ab95214
     patches:
       # https://reviews.llvm.org/D99470
       - patches/0001-Support-cross-compiling-standalone-MLIR.patch
@@ -24,6 +24,7 @@ requirements:
   build:
     - cmake
     - ninja
+    - {{ stdlib('c') }}
     - {{ compiler('cxx') }}
     - llvmdev {{ version }}  # [build_platform != target_platform]
     - zlib                   # [build_platform != target_platform]
@@ -38,6 +39,7 @@ outputs:
     script: install_mlir.bat  # [win]
     requirements:
       build:
+        - {{ stdlib('c') }}
         - {{ compiler('cxx') }}
         - cmake
         - ninja
@@ -74,6 +76,7 @@ outputs:
       skip: true  # [win]
     requirements:
       build:
+        - {{ stdlib('c') }}
         - {{ compiler('cxx') }}
         - cmake
         - ninja
@@ -107,6 +110,7 @@ outputs:
       {% endif %}
     requirements:
       build:
+        - {{ stdlib('c') }}
         - {{ compiler('cxx') }}
         - cmake
         - ninja

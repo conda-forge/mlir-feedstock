@@ -48,7 +48,7 @@ outputs:
         - {{ pin_subpackage("libmlir", exact=True) }}
         - llvmdev {{ version }}
         - llvm {{ version }}
-        - zlib  # [win]
+        - zlib
         - zstd  # [win]
       run:
         - llvmdev {{ version }}

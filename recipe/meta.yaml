@@ -37,6 +37,10 @@ outputs:
   - name: mlir
     script: install_mlir.sh  # [unix]
     script: install_mlir.bat  # [win]
+    build:
+      ignore_run_exports_from:
+        # the build fails if it doesn't find zlib, but it's not used
+        - zlib  # [unix]
     requirements:
       build:
         - {{ stdlib('c') }}

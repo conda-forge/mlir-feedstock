@@ -1,4 +1,4 @@
-{% set version = "19.1.0.rc3" %}
+{% set version = "19.1.0.rc4" %}
 {% set major_version = version.split(".")[0] %}
 {% set maj_min = major_version ~ "." ~ version.split(".")[1] %}
 
@@ -12,7 +12,7 @@ package:
 
 source:
   - url: https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-{{ version.replace(".rc", "-rc") }}.tar.gz
-    sha256: 57f926edf60a92947fa9b8b0adfdf3c6f2182a4ecf1c929176218eef619d7411
+    sha256: 570ea538eae9939e1b008c4e8055227dae3ab58054c74707ad1d5a8cb51536c3
     patches:
       # https://reviews.llvm.org/D99470
       - patches/0001-Support-cross-compiling-standalone-MLIR.patch
@@ -37,6 +37,10 @@ outputs:
   - name: mlir
     script: install_mlir.sh  # [unix]
     script: install_mlir.bat  # [win]
+    build:
+      ignore_run_exports_from:
+        # the build fails if it doesn't find zlib, but it's not used
+        - zlib  # [unix]
     requirements:
       build:
         - {{ stdlib('c') }}

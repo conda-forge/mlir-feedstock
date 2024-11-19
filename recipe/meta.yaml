@@ -2,8 +2,8 @@
 {% set major_version = version.split(".")[0] %}
 {% set maj_min = major_version ~ "." ~ version.split(".")[1] %}
 
-# as of LLVM 17, we expect an "rc" suffix for the release candidates
-{% set extra = "rc" if version.split(".")[-1] not in "0123456789" else "" %}
+# as of LLVM 19, we expect an "-rcX" suffix for the release candidates
+{% set extra = "-" ~ version.split(".")[-1] if version.split(".")[-1] not in "0123456789" else "" %}
 {% set extra = "git" if version.split(".")[-1] == "dev0" else extra %}
 
 package:
@@ -38,6 +38,10 @@ outputs:
   - name: mlir
     script: install_mlir.sh  # [unix]
     script: install_mlir.bat  # [win]
+    build:
+      ignore_run_exports_from:
+        # the build fails if it doesn't find zlib, but it's not used
+        - zlib  # [unix]
     requirements:
       build:
         - {{ stdlib('c') }}
@@ -50,9 +54,12 @@ outputs:
         - llvmdev {{ version }}
         - llvm {{ version }}
         - zlib
+        - zstd  # [win]
       run:
-        - {{ pin_subpackage("libmlir", exact=True) }}
         - llvmdev {{ version }}
+        - {{ pin_subpackage("libmlir" ~ major_version, exact=True) }}   # [unix]
+        # we need to do this manually because clang_bootstrap has no run-export
+        - libcxx >={{ cxx_compiler_version }}                           # [osx]
     test:
       commands:
         # static library
@@ -85,7 +92,9 @@ outputs:
       host:
         - llvmdev {{ version }}
         - llvm {{ version }}
-        - zlib
+      run:
+        # we need to do this manually because clang_bootstrap has no run-export
+        - libcxx >={{ cxx_compiler_version }}   # [osx]
     test:
       commands:
         # presence of versioned libraries
@@ -119,14 +128,16 @@ outputs:
       host:
         - llvmdev {{ version }}
         - llvm {{ version }}
-        - zlib
         - {{ pin_subpackage("libmlir" ~ major_version, exact=True) }}  # [unix]
       run:
         - {{ pin_subpackage("libmlir" ~ major_version, exact=True) }}  # [unix]
+        # we need to do this manually because clang_bootstrap has no run-export
+        - libcxx >={{ cxx_compiler_version }}                          # [osx]
     test:
       commands:
         # presence of unversioned libraries
         - test -f $PREFIX/lib/libMLIR${SHLIB_EXT}       # [unix]
+        # nothing on windows (package currently empty)
         - if exist %LIBRARY_BIN%\libmlir.dll exit 1     # [win]
 
 about:

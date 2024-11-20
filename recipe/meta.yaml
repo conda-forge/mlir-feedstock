@@ -1,10 +1,11 @@
 {% set version = "19.1.4" %}
 {% set major_version = version.split(".")[0] %}
+{% set tail_version = version.split(".")[-1] %}
 {% set maj_min = major_version ~ "." ~ version.split(".")[1] %}
 
 # as of LLVM 19, we expect an "-rcX" suffix for the release candidates
-{% set extra = "-" ~ version.split(".")[-1] if version.split(".")[-1] not in "0123456789" else "" %}
-{% set extra = "git" if version.split(".")[-1] == "dev0" else extra %}
+{% set extra = "-" ~ tail_version if tail_version not in "0123456789" else "" %}
+{% set extra = "git" if tail_version|trim("0123456789") == "dev" else extra %}
 
 package:
   name: mlir-split

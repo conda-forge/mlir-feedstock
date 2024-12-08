@@ -32,8 +32,6 @@ requirements:
     - zlib                   # [build_platform != target_platform]
   host:
     - llvmdev {{ version }}
-    # while we fix CMake metadata for llvmdev
-    - libllvm-c{{ major_version }}              # [win]
     - llvm {{ version }}
     - zlib
 

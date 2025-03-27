@@ -1,4 +1,4 @@
-{% set version = "20.0.0.dev6" %}
+{% set version = "21.0.0.dev1" %}
 {% set major_version = version.split(".")[0] %}
 {% set tail_version = version.split(".")[-1] %}
 {% set maj_min = major_version ~ "." ~ version.split(".")[1] %}
@@ -13,8 +13,8 @@ package:
 
 source:
   # - url: https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-{{ version.replace(".rc", "-rc") }}.tar.gz
-  - url: https://github.com/llvm/llvm-project/archive/3b5e9eed2f67c1fb6dcf7033e92509ba2b0381e9.tar.gz
-    sha256: 29c26ef6c079376cf4dfdbca1cd2e6c53bb2e47eaafc66e13d396bdacdde1336
+  - url: https://github.com/llvm/llvm-project/archive/e5129b7e2092c54e503f60cc0ac552c765d5a144.tar.gz
+    sha256: f8506cf5d53a5d555384a8917432db40ef8a2b89a5172d64f8a753b649f0274b
     patches:
       # https://reviews.llvm.org/D99470
       - patches/0001-Support-cross-compiling-standalone-MLIR.patch

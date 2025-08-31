@@ -50,9 +50,9 @@ jobs:
         # If there is already a swapfile, disable it and remove it
         if swapon --show | grep -q $SWAPFILE; then
             echo "Disabling existing swapfile..."
-            swapoff $SWAPFILE || true
+            sudo swapoff $SWAPFILE || true
         fi
-        [ -f "$SWAPFILE" ] && rm -f $SWAPFILE
+        [ -f "$SWAPFILE" ] && sudo rm -f $SWAPFILE
          sudo fallocate -l 15GiB $SWAPFILE
          sudo chmod 600 $SWAPFILE
          sudo mkswap $SWAPFILE

@@ -82,7 +82,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libmlir-green.svg)](https://anaconda.org/conda-forge/libmlir) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libmlir.svg)](https://anaconda.org/conda-forge/libmlir) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libmlir.svg)](https://anaconda.org/conda-forge/libmlir) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libmlir.svg)](https://anaconda.org/conda-forge/libmlir) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-libmlir21-green.svg)](https://anaconda.org/conda-forge/libmlir21) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libmlir21.svg)](https://anaconda.org/conda-forge/libmlir21) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libmlir21.svg)](https://anaconda.org/conda-forge/libmlir21) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libmlir21.svg)](https://anaconda.org/conda-forge/libmlir21) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libmlir22-green.svg)](https://anaconda.org/conda-forge/libmlir22) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libmlir22.svg)](https://anaconda.org/conda-forge/libmlir22) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libmlir22.svg)](https://anaconda.org/conda-forge/libmlir22) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libmlir22.svg)](https://anaconda.org/conda-forge/libmlir22) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-mlir-green.svg)](https://anaconda.org/conda-forge/mlir) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mlir.svg)](https://anaconda.org/conda-forge/mlir) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mlir.svg)](https://anaconda.org/conda-forge/mlir) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mlir.svg)](https://anaconda.org/conda-forge/mlir) |
 
 Installing mlir
@@ -95,16 +95,16 @@ conda config --add channels conda-forge/label/llvm_rc
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge/label/llvm_rc` channel has been enabled, `libmlir, libmlir21, mlir` can be installed with `conda`:
+Once the `conda-forge/label/llvm_rc` channel has been enabled, `libmlir, libmlir22, mlir` can be installed with `conda`:
 
 ```
-conda install libmlir libmlir21 mlir
+conda install libmlir libmlir22 mlir
 ```
 
 or with `mamba`:
 
 ```
-mamba install libmlir libmlir21 mlir
+mamba install libmlir libmlir22 mlir
 ```
 
 It is possible to list all of the versions of `libmlir` available on your platform with `conda`:
@@ -154,12 +154,12 @@ it is possible to build and upload installable packages to the
 [conda-forge](https://anaconda.org/conda-forge) [anaconda.org](https://anaconda.org/)
 channel for Linux, Windows and OSX respectively.
 
-To manage the continuous integration and simplify feedstock maintenance
+To manage the continuous integration and simplify feedstock maintenance,
 [conda-smithy](https://github.com/conda-forge/conda-smithy) has been developed.
 Using the ``conda-forge.yml`` within this repository, it is possible to re-render all of
 this feedstock's supporting files (e.g. the CI configuration files) with ``conda smithy rerender``.
 
-For more information please check the [conda-forge documentation](https://conda-forge.org/docs/).
+For more information, please check the [conda-forge documentation](https://conda-forge.org/docs/).
 
 Terminology
 ===========
@@ -186,7 +186,7 @@ merged, the recipe will be re-built and uploaded automatically to the
 everybody to install and use from the `conda-forge` channel.
 Note that all branches in the conda-forge/mlir-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
-on branches in forks and branches in the main repository should only be used to
+on branches in forks, and branches in the main repository should only be used to
 build distinct package versions.
 
 In order to produce a uniquely identifiable distribution:

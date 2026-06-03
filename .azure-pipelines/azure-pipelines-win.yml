@@ -11,22 +11,26 @@ jobs:
       win_64_:
         CONFIG: win_64_
         UPLOAD_PACKAGES: 'True'
+        build_workspace_dir: C:\bld
+        pagefile_size: 15
         store_build_artifacts: false
+        tools_install_dir: C:\Miniforge
   timeoutInMinutes: 360
   variables:
-    CONDA_BLD_PATH: C:\\bld\\
-    MINIFORGE_HOME: C:\\Miniforge
-    SET_PAGEFILE: 'True'
     UPLOAD_TEMP: D:\\tmp
 
   steps:
-
+    - script: |
+        call ".scripts\create_pagefile.bat" $(pagefile_size)
+      env:
+        CONDA_BLD_PATH: $(build_workspace_dir)
+      displayName: Create page file
     - script: |
         call ".scripts\run_win_build.bat"
       displayName: Run Windows build
       env:
-        MINIFORGE_HOME: $(MINIFORGE_HOME)
-        CONDA_BLD_PATH: $(CONDA_BLD_PATH)
+        MINIFORGE_HOME: $(tools_install_dir)
+        CONDA_BLD_PATH: $(build_workspace_dir)
         PYTHONUNBUFFERED: 1
         CONFIG: $(CONFIG)
         CI: azure

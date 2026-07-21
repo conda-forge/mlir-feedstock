@@ -13,7 +13,14 @@ Current build status
 ====================
 
 
-<table>
+<table><tr>
+    <td>GitHub Actions</td>
+    <td>
+      <a href="https://github.com/conda-forge/mlir-feedstock/actions/workflows/conda-build.yml">
+        <img src="https://github.com/conda-forge/mlir-feedstock/actions/workflows/conda-build.yml/badge.svg?event=push&branch=main">
+      </a>
+    </td>
+  </tr>
     
   <tr>
     <td>Azure</td>
@@ -27,27 +34,6 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11751&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mlir-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11751&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mlir-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_ppc64le</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11751&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mlir-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
               <td>osx_64</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11751&branchName=main">
@@ -83,6 +69,7 @@ Current release info
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libmlir-green.svg)](https://anaconda.org/conda-forge/libmlir) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libmlir.svg)](https://anaconda.org/conda-forge/libmlir) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libmlir.svg)](https://anaconda.org/conda-forge/libmlir) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libmlir.svg)](https://anaconda.org/conda-forge/libmlir) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libmlir22-green.svg)](https://anaconda.org/conda-forge/libmlir22) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libmlir22.svg)](https://anaconda.org/conda-forge/libmlir22) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libmlir22.svg)](https://anaconda.org/conda-forge/libmlir22) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libmlir22.svg)](https://anaconda.org/conda-forge/libmlir22) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libmlir23-green.svg)](https://anaconda.org/conda-forge/libmlir23) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libmlir23.svg)](https://anaconda.org/conda-forge/libmlir23) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libmlir23.svg)](https://anaconda.org/conda-forge/libmlir23) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libmlir23.svg)](https://anaconda.org/conda-forge/libmlir23) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-mlir-green.svg)](https://anaconda.org/conda-forge/mlir) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mlir.svg)](https://anaconda.org/conda-forge/mlir) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mlir.svg)](https://anaconda.org/conda-forge/mlir) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mlir.svg)](https://anaconda.org/conda-forge/mlir) |
 
 Installing mlir
@@ -95,16 +82,16 @@ conda config --add channels conda-forge/label/llvm_rc
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge/label/llvm_rc` channel has been enabled, `libmlir, libmlir22, mlir` can be installed with `conda`:
+Once the `conda-forge/label/llvm_rc` channel has been enabled, `libmlir, libmlir22, libmlir23, mlir` can be installed with `conda`:
 
 ```
-conda install libmlir libmlir22 mlir
+conda install libmlir libmlir22 libmlir23 mlir
 ```
 
 or with `mamba`:
 
 ```
-mamba install libmlir libmlir22 mlir
+mamba install libmlir libmlir22 libmlir23 mlir
 ```
 
 It is possible to list all of the versions of `libmlir` available on your platform with `conda`:

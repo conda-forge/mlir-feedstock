@@ -47,13 +47,6 @@ Current build status
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mlir-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_" alt="variant">
                 </a>
               </td>
-            </tr><tr>
-              <td>win_64</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11751&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/mlir-feedstock?branchName=main&jobName=win&configuration=win%20win_64_" alt="variant">
-                </a>
-              </td>
             </tr>
           </tbody>
         </table>
@@ -68,7 +61,6 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libmlir-green.svg)](https://anaconda.org/conda-forge/libmlir) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libmlir.svg)](https://anaconda.org/conda-forge/libmlir) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libmlir.svg)](https://anaconda.org/conda-forge/libmlir) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libmlir.svg)](https://anaconda.org/conda-forge/libmlir) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-libmlir22-green.svg)](https://anaconda.org/conda-forge/libmlir22) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libmlir22.svg)](https://anaconda.org/conda-forge/libmlir22) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libmlir22.svg)](https://anaconda.org/conda-forge/libmlir22) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libmlir22.svg)](https://anaconda.org/conda-forge/libmlir22) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libmlir23-green.svg)](https://anaconda.org/conda-forge/libmlir23) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libmlir23.svg)](https://anaconda.org/conda-forge/libmlir23) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libmlir23.svg)](https://anaconda.org/conda-forge/libmlir23) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libmlir23.svg)](https://anaconda.org/conda-forge/libmlir23) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-mlir-green.svg)](https://anaconda.org/conda-forge/mlir) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mlir.svg)](https://anaconda.org/conda-forge/mlir) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mlir.svg)](https://anaconda.org/conda-forge/mlir) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mlir.svg)](https://anaconda.org/conda-forge/mlir) |
 
@@ -82,31 +74,73 @@ conda config --add channels conda-forge/label/llvm_rc
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge/label/llvm_rc` channel has been enabled, `libmlir, libmlir22, libmlir23, mlir` can be installed with `conda`:
+How to use
+----------
+
+<details>
+<summary>With conda</summary>
 
 ```
-conda install libmlir libmlir22 libmlir23 mlir
+conda install libmlir libmlir23 mlir
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
-mamba install libmlir libmlir22 libmlir23 mlir
+mamba install libmlir libmlir23 mlir
 ```
 
-It is possible to list all of the versions of `libmlir` available on your platform with `conda`:
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+# for adding to your local project
+pixi add libmlir libmlir23 mlir
+# for installing globally
+pixi global install libmlir libmlir23 mlir
+```
+
+</details>
+
+Search package versions
+-----------------------
+
+It is possible to list all of the versions of `libmlir` available on your platform:
+
+<details>
+<summary>With conda</summary>
 
 ```
 conda search libmlir --channel conda-forge/label/llvm_rc
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
 mamba search libmlir --channel conda-forge/label/llvm_rc
 ```
 
-Alternatively, `mamba repoquery` may provide more information:
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+pixi search libmlir --channel conda-forge/label/llvm_rc
+```
+
+</details>
+
+<details>
+<summary>With mamba repoquery, which may provide more information</summary>
 
 ```
 # Search all versions available on your platform:
@@ -118,6 +152,8 @@ mamba repoquery whoneeds libmlir --channel conda-forge/label/llvm_rc
 # List dependencies of `libmlir`:
 mamba repoquery depends libmlir --channel conda-forge/label/llvm_rc
 ```
+
+</details>
 
 
 About conda-forge

@@ -67,10 +67,10 @@ Current release info
 Installing mlir
 ===============
 
-Installing `mlir` from the `conda-forge/label/llvm_rc` channel can be achieved by adding `conda-forge/label/llvm_rc` to your channels with:
+Installing `mlir` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
-conda config --add channels conda-forge/label/llvm_rc
+conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
@@ -116,7 +116,7 @@ It is possible to list all of the versions of `libmlir` available on your platfo
 <summary>With conda</summary>
 
 ```
-conda search libmlir --channel conda-forge/label/llvm_rc
+conda search libmlir --channel conda-forge
 ```
 
 </details>
@@ -125,7 +125,7 @@ conda search libmlir --channel conda-forge/label/llvm_rc
 <summary>With mamba</summary>
 
 ```
-mamba search libmlir --channel conda-forge/label/llvm_rc
+mamba search libmlir --channel conda-forge
 ```
 
 </details>
@@ -134,7 +134,7 @@ mamba search libmlir --channel conda-forge/label/llvm_rc
 <summary>With pixi</summary>
 
 ```
-pixi search libmlir --channel conda-forge/label/llvm_rc
+pixi search libmlir --channel conda-forge
 ```
 
 </details>
@@ -144,13 +144,13 @@ pixi search libmlir --channel conda-forge/label/llvm_rc
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search libmlir --channel conda-forge/label/llvm_rc
+mamba repoquery search libmlir --channel conda-forge
 
 # List packages depending on `libmlir`:
-mamba repoquery whoneeds libmlir --channel conda-forge/label/llvm_rc
+mamba repoquery whoneeds libmlir --channel conda-forge
 
 # List dependencies of `libmlir`:
-mamba repoquery depends libmlir --channel conda-forge/label/llvm_rc
+mamba repoquery depends libmlir --channel conda-forge
 ```
 
 </details>

@@ -61,7 +61,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libmlir-green.svg)](https://anaconda.org/conda-forge/libmlir) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libmlir.svg)](https://anaconda.org/conda-forge/libmlir) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libmlir.svg)](https://anaconda.org/conda-forge/libmlir) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libmlir.svg)](https://anaconda.org/conda-forge/libmlir) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-libmlir23-green.svg)](https://anaconda.org/conda-forge/libmlir23) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libmlir23.svg)](https://anaconda.org/conda-forge/libmlir23) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libmlir23.svg)](https://anaconda.org/conda-forge/libmlir23) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libmlir23.svg)](https://anaconda.org/conda-forge/libmlir23) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libmlir24-green.svg)](https://anaconda.org/conda-forge/libmlir24) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libmlir24.svg)](https://anaconda.org/conda-forge/libmlir24) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libmlir24.svg)](https://anaconda.org/conda-forge/libmlir24) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libmlir24.svg)](https://anaconda.org/conda-forge/libmlir24) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-mlir-green.svg)](https://anaconda.org/conda-forge/mlir) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/mlir.svg)](https://anaconda.org/conda-forge/mlir) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/mlir.svg)](https://anaconda.org/conda-forge/mlir) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/mlir.svg)](https://anaconda.org/conda-forge/mlir) |
 
 Installing mlir
@@ -81,7 +81,7 @@ How to use
 <summary>With conda</summary>
 
 ```
-conda install libmlir libmlir23 mlir
+conda install libmlir libmlir24 mlir
 ```
 
 </details>
@@ -90,7 +90,7 @@ conda install libmlir libmlir23 mlir
 <summary>With mamba</summary>
 
 ```
-mamba install libmlir libmlir23 mlir
+mamba install libmlir libmlir24 mlir
 ```
 
 </details>
@@ -100,9 +100,9 @@ mamba install libmlir libmlir23 mlir
 
 ```
 # for adding to your local project
-pixi add libmlir libmlir23 mlir
+pixi add libmlir libmlir24 mlir
 # for installing globally
-pixi global install libmlir libmlir23 mlir
+pixi global install libmlir libmlir24 mlir
 ```
 
 </details>

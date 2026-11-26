@@ -1,3 +1,7 @@
+bot:
+  abi_migration_branches:
+  - 22.x
+  - 21.x
 build_platform:
   linux_ppc64le: linux_64
   osx_64: osx_arm64
